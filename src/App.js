@@ -10,8 +10,8 @@ import Homepage from './pages/HomePage';
 
 function App() {
   return (
-    <div className="min-h-full h-screen flex justify-center py-12 px-4 sm:px-6 lg:px-8 bg-gray-900">
-    <div className="max-w-lg w-full">
+    <>
+    
      <BrowserRouter>
         <Routes>
             <Route path="/" element={<Loginpage/>} />
@@ -19,8 +19,8 @@ function App() {
             <Route path="/home" element={<Homepage/>} />
         </Routes>
       </BrowserRouter>
-    </div>
-  </div>
+    </>
+ 
   );
 }
 
