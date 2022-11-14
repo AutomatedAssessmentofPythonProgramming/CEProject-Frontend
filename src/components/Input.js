@@ -12,6 +12,7 @@ export default function Input({
     placeholder,
     customClass
 }){
+  
     return(
         <div className="my-5">
             <label htmlFor={labelFor} className="sr-only">

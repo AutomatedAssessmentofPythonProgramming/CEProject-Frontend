@@ -1,12 +1,15 @@
 const tempcard=[
     {
-        cardname:"card1"
+        teamname:"team1",
+        teamid:"1"
     },
     {
-        cardname:"card2"
+        teamname:"team2",
+        teamid:"2"
     },
     {
-        cardname:"card3"
+        teamname:"team3",
+        teamid:"3"
     },
 ]
 
