@@ -29,7 +29,7 @@ export default function TeamMemberPage(){
     }
     return(
         <>
-        <div className="min-h-screen h-max flex flex-col justify-start items-center h-screen py-12 px-4 sm:px-6 lg:px-8 bg-zinc-900">
+        <div className="min-h-screen h-max flex flex-col justify-start items-center py-12 px-4 sm:px-6 lg:px-8 bg-zinc-900">
             <div className="mt-6 flex justify-start max-w-3xl w-full">
                 <a href={"/team/" + teamid}>
                     <button 

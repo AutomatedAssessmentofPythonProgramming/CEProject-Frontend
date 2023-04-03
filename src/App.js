@@ -13,6 +13,9 @@ import TeamPage from './pages/TeamPage';
 import TeamMemberPage from './pages/TeamMemberPage';
 import Navbar from './components/Navbar';
 import TestPage from './pages/TestPage';
+import TestCodingPage from './pages/TestCodingPage';
+import NewExercise from './components/NewExercise';
+import NewTeam from './components/NewTeam';
 
 function App() {
   return (
@@ -25,13 +28,14 @@ function App() {
             <Route path="/signup" element={<Signuppage/>} />
             <Route path="/home" element={<Homepage/>} />
             <Route path="/setting" element={<SettingPage/>}/>
+            <Route path="/createteam" element={<NewTeam/>}/>
             <Route path="/manageteam" element={<MagageTeamPage/>}/>
             <Route path="/team" element={<TeamPage/>}></Route>
             <Route path="/team/:teamid" element= {<TeamPage/>}/>
             <Route path="/team/:teamid/member" element={<TeamMemberPage/>}/>
-            
+            <Route path="/team/:teamid/createex" element={<NewExercise/>}/>
             <Route path="/test" element={<TestPage/>}/>
-            {/* <Route path="/testcoding" element={} */}
+            <Route path="/testcoding" element={<TestCodingPage/>}/>
         </Routes>
       </BrowserRouter>
     </>

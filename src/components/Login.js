@@ -61,9 +61,9 @@ export default function Login(){
                 </button>
             </div>
             <div className = "my-5 text-gray-400 items-center flex flex-row justify-center">
-                <hr className="h-0.5 w-full bg-gray-200 rounded-md"></hr>
+                <hr className="h-0.5 w-full bg-gray-300 rounded-md"></hr>
                 <p className="mx-4">or</p>
-                <hr className="h-0.5 w-full bg-gray-200 rounded-md"></hr> 
+                <hr className="h-0.5 w-full bg-gray-300 rounded-md"></hr> 
             </div>
             <div className="my-5">
                 <input

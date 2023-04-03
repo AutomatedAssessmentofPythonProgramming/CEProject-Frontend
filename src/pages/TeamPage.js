@@ -3,6 +3,7 @@ import { exercisecard } from "../constants/tempCards";
 import { useEffect, useState } from "react";
 import EditTeam from "../components/EditTeam";
 import Addmember from "../components/Addmember";
+import NewExercise from "../components/NewExercise";
 import { useParams } from "react-router-dom";
 
 const card = exercisecard
@@ -12,16 +13,19 @@ export default function TeamPage(){
     const teamid = params.teamid
     const [isLoading, setIsLoading] = useState(false);
     const [isOpen,setIsOpen] = useState(false);
+
     const handleOnClose = () => setIsOpen(false)
-    
+ 
+
     const handleClick=(e)=>{
         
         setIsOpen(!isOpen)
         console.log(!isOpen)
     }
+    
     return(
         
-        <div className="min-h-screen h-max flex flex-col justify-start items-center h-screen py-12 px-4 sm:px-6 lg:px-8 bg-zinc-900">
+        <div className="min-h-screen h-max flex flex-col justify-start items-center py-12 px-4 sm:px-6 lg:px-8 bg-zinc-900">
             <div className="flex justify-between max-w-3xl w-full">
                 <h2 className="mt-6 text-3xl font-bold text-white">
                     {teamid}
@@ -40,13 +44,15 @@ export default function TeamPage(){
             <div className="border-b border-gray-300 max-w-3xl w-full my-8"> </div>
           
             <div className="my-4 flex justify-start w-full max-w-3xl">
+                <a href={teamid + "/createex"}>
                 <button 
                     className="h-10 px-3 mr-2 text-sm font-medium rounded-md text-white bg-blue-800 hover:bg-blue-900 focus:outline-none"
-                    onClick={handleClick}
+                    
                     id = "CreateExercise"
                 >
                      + Create Exercise
                 </button>
+                </a>
                 <a href={teamid + "/member"}>
                 <button 
                     className="h-10 px-3 mx-2 text-sm font-medium rounded-md text-white bg-gray-700 hover:bg-gray-800 focus:outline-none"

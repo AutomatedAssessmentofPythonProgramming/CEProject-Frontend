@@ -1,41 +1,111 @@
-export default function NewTeam({open, onClose}){
-    const handleOnClose =(e)=>{
-        if(e.target.id === "container") onClose();
-    }
-    
-    if(!open) return null
+import React, { useState } from 'react';
+import { useParams,useHistory } from "react-router-dom";
 
-    return(
-        <div 
-            id='container'
-            onClick={handleOnClose}
-            className="fixed inset-0 bg-black bg-opacity-25 backdrop-blur-sm flex items-center justify-center"
-        >
-            <div className="bg-zinc-900 px-4 py-10 rounded max-w-2xl w-full border-2 border-gray-700">
-            <h1 className="font-semibold text-2xl text-white ml-2 mb-5">
-                New Team
-            </h1>
-            <div className="flex flex-col">
-                <input
-                type="text"
-                className="border border-gray-700 p-2 rounded mx-2 mb-5"
-                placeholder="Team Display name"
-                />
-                <input
-                type="text"
-                className="border border-gray-700 p-2 rounded mx-2 mb-5"
-                placeholder="Team ID"
-                />
+
+export default function NewTeam() {
+    // const params=useParams();
+    // const teamid = params.teamid
+  const [team, setTeam] = useState('');
+  const [teamId, setTeamId] = useState('');
+  const [teamId2, setTeamId2] = useState('');
+  //const history = useHistory();
+
+  const handleTeamChange = (event) => {
+    setTeam(event.target.value);
+  };
+
+  const handleTeamIdChange = (event) => {
+    setTeamId(event.target.value);
+  };
+
+  const handleTeamId2Change = (event) => {
+    setTeamId2(event.target.value);
+  };
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    // do something with the form data, e.g. submit to a server
+    console.log({ team, teamId});
+    window.location.href= `/team/${encodeURIComponent(teamId)}`
+  };
+
+  const handleSubmit2 = (event) => {
+    event.preventDefault();
+    // do something with the form data, e.g. submit to a server
+    console.log({teamId2});
+    window.location.href= `/team/${encodeURIComponent(teamId2)}`
+  };
+
+  return (
+    <div className="min-h-screen h-max flex flex-col justify-start items-center py-12 px-4 sm:px-6 lg:px-8 bg-zinc-900">
+        <div className="mt-6 flex justify-start max-w-md w-full mb-8">
+                <a href={"/home"}>
+                    <button 
+                        className="h-10 px-3 text-sm font-medium rounded-md text-white bg-gray-700 hover:bg-gray-800 focus:outline-none"
+                        id = "invite"
+                    >
+                        &lt; Back to home
+                    </button>
+                </a>
             </div>
-            <div className="flex flex-row justify-end mr-2">
-                <button onClick={onClose} className="px-5 py-2 ml-2 bg-blue-700 hover:bg-blue-800 text-white rounded-md">
+      <div className='border border-gray-300 max-w-md w-full rounded-md px-4'>
+      <h1 className="font-semibold text-2xl text-white my-4">
+        Create Team
+      </h1>
+      <form onSubmit={handleSubmit}>
+        <div className='text-white text-lg my-2'>
+          Display Name
+        </div>
+        <input
+            type="text"
+            id="title-input"
+            value={team}
+            onChange={handleTeamChange}
+            className='rounded-md p-2 w-full'
+          />
+        <div className='text-white text-lg my-2'>
+          Team ID
+        </div>
+        <input
+            type="text"
+            id="description-input"
+            value={teamId}
+            onChange={handleTeamIdChange}
+            className='rounded-md p-2 w-full'
+          />
+        <div className="flex flex-row justify-end my-4">
+                <button type="submit" className="px-5 py-2 ml-2 bg-blue-700 hover:bg-blue-800 text-white rounded-md">
                     Create
                 </button>
-                <button onClick={onClose} className="px-5 py-2 ml-2 bg-red-600 hover:bg-red-800 text-white rounded-md">
-                    Cancel
+            </div>
+      </form>
+        <div className = "my-4 text-white items-center flex flex-row justify-center">
+            <hr className="h-0.5 w-full bg-gray-300 rounded-md"></hr>
+            <p className="mx-4">or</p>
+            <hr className="h-0.5 w-full bg-gray-300 rounded-md"></hr> 
+        </div>
+        <h1 className="font-semibold text-2xl text-white my-4">
+        Join Team
+      </h1>
+      <form onSubmit={handleSubmit2}>
+        <div className='text-white text-lg my-2'>
+          Team ID
+        </div>
+        <input
+            type="text"
+            id="title-input"
+            value={teamId2}
+            onChange={handleTeamId2Change}
+            className='rounded-md p-2 w-full'
+          />
+        
+        <div className="flex flex-row justify-end my-4">
+                <button type="submit" className="px-5 py-2 ml-2 bg-blue-700 hover:bg-blue-800 text-white rounded-md">
+                    Join
                 </button>
             </div>
-            </div>
-        </div>
-    )
+      </form>
+      </div>
+      
+    </div>
+  );
 }
