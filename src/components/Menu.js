@@ -1,7 +1,7 @@
 export default function Menu({menuname}){
 
     return(
-        <ul className={`text-sm w-32 border rounded-md border-gray-700`}>
+        <ul className={`text-sm w-32 border rounded-md border-gray-500`}>
             {menuname?.map(Title=>
                 // {Title === "Delete"? 
                 // <li 
