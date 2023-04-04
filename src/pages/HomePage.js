@@ -1,4 +1,4 @@
-import TeamCard from "../components/TeamCard"
+import HomeCard from "../components/HomeCard"
 import { tempcard } from "../constants/tempCards"
 import { useEffect, useState } from "react";
 import NewTeam from "../components/NewTeam";
@@ -48,7 +48,7 @@ export default function Homepage(){
                 {/* <NewTeam onClose={handleOnClose} open={isOpen}/> */}
                 <div className="flex flex-col max-w-3xl w-full">
                     {card.map(Title=>
-                        <TeamCard team={Title}/>
+                        <HomeCard team={Title}/>
                     )}
                  </div>
             </div>

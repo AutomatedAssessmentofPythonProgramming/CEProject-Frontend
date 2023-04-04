@@ -12,7 +12,7 @@ export default function Navbar(){
     <div className="flex items-center justify-between h-16">
       <div className="flex-shrink-0">
         <a href={"/home"} className="text-white font-medium text-base">
-        Home
+        CEPYTHON
         </a>
       </div>
       <div className="-mr-2 flex md:hidden">
@@ -51,7 +51,12 @@ export default function Navbar(){
         } md:block mt-4 md:mt-0`}
       >
         <div className="ml-4 flex items-center md:ml-6">
-
+        <a
+            href="/home"
+            className="block mt-4 md:inline-block md:mt-0 text-white hover:text-gray-300 px-3 py-2 rounded-md text-base font-medium"
+          >
+            Home
+          </a>
           <a
             href="/setting"
             className="block mt-4 md:inline-block md:mt-0 text-white hover:text-gray-300 px-3 py-2 rounded-md text-base font-medium"

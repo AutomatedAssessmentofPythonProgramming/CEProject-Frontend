@@ -18,12 +18,14 @@ export default function Menu({menuname}){
                 //     {Title}
                 // </li>
                 // }    
+                <a href="/">
                 <li 
                     className={`p-2 text-sm bg-gray-700 hover:bg-gray-800 text-white`}
                     id={Title}
                 >
                     {Title}
                 </li>   
+                </a>
             )}
             
         </ul>

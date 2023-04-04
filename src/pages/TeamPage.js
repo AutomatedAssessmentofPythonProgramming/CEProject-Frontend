@@ -1,4 +1,4 @@
-import ExerciseCard from "../components/ExerciseCard";
+import TeamCard from "../components/TeamCard";
 import { exercisecard } from "../constants/tempCards";
 import { useEffect, useState } from "react";
 import EditTeam from "../components/EditTeam";
@@ -76,7 +76,7 @@ export default function TeamPage(){
                 </div>
                 <div className="flex flex-col w-full px-4">
                         {card.map(Title=>
-                            <ExerciseCard exercise={Title} teamid={teamid}/>
+                            <TeamCard exercise={Title} teamid={teamid}/>
                         )}
                 </div>
             </div>

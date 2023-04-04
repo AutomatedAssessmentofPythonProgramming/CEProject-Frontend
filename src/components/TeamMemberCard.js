@@ -1,18 +1,17 @@
-//For TeamPage.js
-
+//For TeamMemberPage.js
 
 import { Link } from "react-router-dom";
 import { useState } from 'react';
 import Menu from "./Menu";
 
-export default function TeamCard({
-    exercise,teamid
+export default function TeamMemberCard({
+    member,teamid
 }){
     const handleOnClose =(e)=>{
         if(e.target.id === "container") setOpen(!open);
     }
     const [open,setOpen] = useState(false);
-    const exercisemenu = ["Edit","Delete"]
+    const exercisemenu = ["Edit Score","Delete"]
     return(
         <>
         <div 
@@ -21,29 +20,24 @@ export default function TeamCard({
             onClick={handleOnClose}
         >
             <div className="flex flex-col">
-                <Link to={exercise.exerciseid} className="w-full py-4 px-2 text-white text-lg font-bold ">
+                <Link to={"/team/" + teamid +"/member/" + member.studentid} className="w-full py-4 px-2 text-white text-lg font-bold ">
                 <span className="">
-                    {exercise.exercisename} 
+                    {member.name} 
                 </span>  
                 </Link>   
                 <span className="py-4 px-2 text-white text-base font-normal">
-                    {exercise.description}
+                    {member.email}
                 </span>
             </div>     
             <div className="py-12 px-2 text-white text-lg font-normal">
-                {exercise.duedate}
+                {member.studentid}
             </div>    
-            <Link to={exercise.exerciseid+"/edit"} className="py-12 px-2 text-blue-600 hover:text-blue-700 text-lg font-medium ">
-                <span className="">
-                    Edit
-                </span>  
-            </Link>   
-            <Link to={exercise.exerciseid+"/submit"} className="py-12 pl-12 text-blue-600 hover:text-blue-700 text-lg font-medium ">
-            {/* <Link to={exercise.exerciseid} className="py-12 pl-12 text-blue-600 hover:text-blue-700 text-lg font-medium "> */}
-                <span className="">
-                    View Submission
-                </span>  
-            </Link>   
+            <div className="py-12 px-2 text-white text-lg font-normal">
+                {member.submit}/10
+            </div>  
+            <div className="py-12 px-2 text-white text-lg font-normal">
+                {member.score}/100
+            </div>  
             <button   
                 id="dropdownMenuIconHorizontalButton" 
                 data-dropdown-toggle="dropdownDotsHorizontal" 

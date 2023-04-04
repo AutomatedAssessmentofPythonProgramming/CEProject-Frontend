@@ -1,15 +1,18 @@
+//For EachMemberPage.js
+
+
 import { Link } from "react-router-dom";
 import { useState } from 'react';
 import Menu from "./Menu";
 
-export default function MemberCard({
-    member
+export default function EachMemberCard({
+    memberexcard,teamid,stdid
 }){
     const handleOnClose =(e)=>{
         if(e.target.id === "container") setOpen(!open);
     }
     const [open,setOpen] = useState(false);
-    const exercisemenu = ["Edit Score","Delete"]
+    const exercisemenu = ["Edit","Delete"]
     return(
         <>
         <div 
@@ -18,24 +21,27 @@ export default function MemberCard({
             onClick={handleOnClose}
         >
             <div className="flex flex-col">
-                <Link to={"/exercise/" + member.exerciseid} className="w-full py-4 px-2 text-white text-lg font-bold ">
+                <Link to={memberexcard.exerciseid} className="w-full py-4 px-2 text-white text-lg font-bold ">
                 <span className="">
-                    {member.name} 
+                    {memberexcard.exercisename} 
                 </span>  
                 </Link>   
                 <span className="py-4 px-2 text-white text-base font-normal">
-                    {member.email}
+                    {memberexcard.description}
                 </span>
             </div>     
             <div className="py-12 px-2 text-white text-lg font-normal">
-                {member.studentid}
+                {memberexcard.duedate}
             </div>    
             <div className="py-12 px-2 text-white text-lg font-normal">
-                {member.submit}/10
-            </div>  
-            <div className="py-12 px-2 text-white text-lg font-normal">
-                {member.score}/100
-            </div>  
+                10
+            </div>   
+            <Link to={memberexcard.exerciseid} className="py-12 pl-12 text-blue-600 hover:text-blue-700 text-lg font-medium ">
+            {/* <Link to={exercise.exerciseid} className="py-12 pl-12 text-blue-600 hover:text-blue-700 text-lg font-medium "> */}
+                <span className="">
+                    View Code
+                </span>  
+            </Link>   
             <button   
                 id="dropdownMenuIconHorizontalButton" 
                 data-dropdown-toggle="dropdownDotsHorizontal" 

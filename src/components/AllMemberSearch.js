@@ -1,3 +1,5 @@
+//Searching Member
+
 import React, { useState } from "react";
 import { membercard } from "../constants/tempCards";
 
@@ -31,7 +33,7 @@ export default function AllMemberSearch({memberid,teamid}){
         {searchTerm && (
           <ul className="text-white bg-gray-700 border border-gray-300 rounded-md mb-2 pl-2">
             {filteredData.map((item, index) => (
-              <a href={`/team/${teamid}/${encodeURIComponent(item)}`} key={index} className="">
+              <a href={`/team/${teamid}/member/${encodeURIComponent(item)}`} key={index} className="">
                 <li onClick={() => handleItemClick(item)}>{item}</li>
               </a>
             ))}
