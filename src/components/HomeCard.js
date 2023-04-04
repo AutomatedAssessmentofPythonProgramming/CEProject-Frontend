@@ -11,7 +11,7 @@ export default function HomeCard({
         if(e.target.id === "container") setOpen(!open);
     }
     const [open,setOpen] = useState(false);
-    const teammenu = ["Rename","Add member","Invite link","Delete"]
+    const teammenu = ["Edit","Delete"]
     return(
         <>
         <div 

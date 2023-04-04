@@ -56,6 +56,7 @@ export default function NewExercise() {
             value={title}
             onChange={handleTitleChange}
             className='rounded-md p-2 w-full'
+            required
           />
         <div className='text-white text-lg my-2'>
           Description
@@ -66,6 +67,7 @@ export default function NewExercise() {
             value={description}
             onChange={handleDescriptionChange}
             className='rounded-md p-2 w-full'
+            required
           />
         <div className='text-white text-lg my-2'>
           Due Date
@@ -76,6 +78,7 @@ export default function NewExercise() {
             value={selectedDate}
             onChange={handleDateChange}
             className='rounded-md p-2 w-full'
+            required
           />
         <div className="flex flex-row justify-end my-4">
                 <button type="submit" className="px-5 py-2 ml-2 bg-blue-700 hover:bg-blue-800 text-white rounded-md">

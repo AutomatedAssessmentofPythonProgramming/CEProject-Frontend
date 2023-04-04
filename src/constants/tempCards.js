@@ -1,15 +1,15 @@
 const tempcard=[
     {
-        teamname:"team1",
-        teamid:"team1"
+        teamname:"CE_01",
+        teamid:"CE_01"
     },
     {
-        teamname:"team2",
-        teamid:"team2"
+        teamname:"CE_02",
+        teamid:"CE_02"
     },
     {
-        teamname:"team3",
-        teamid:"team3"
+        teamname:"CE_03",
+        teamid:"CE_03"
     },
 ]
 const teammanagecard=[
@@ -38,7 +38,7 @@ const exercisecard=[
     },
     {
         exercisename:"ex2",
-        description:"print hello",
+        description:"for loop",
         exerciseid:"ex2",
         duedate:"30/12/2565 23:59"
     },
