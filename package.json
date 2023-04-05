@@ -3,12 +3,13 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "@codemirror/basic-setup": "^0.20.0",
     "@codemirror/lang-python": "^6.1.2",
+    "@lezer/highlight": "^1.1.4",
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
-    "@uiw/codemirror-themes": "^4.19.11",
+    "@uiw/codemirror-extensions-basic-setup": "^4.19.11",
+    "@uiw/codemirror-themes-all": "^4.19.11",
     "@uiw/react-codemirror": "^4.19.11",
     "codemirror": "^6.0.1",
     "react": "^18.2.0",
@@ -16,6 +17,7 @@
     "react-hook-form": "^7.39.3",
     "react-router-dom": "^6.4.3",
     "react-scripts": "5.0.1",
+    "save": "^2.9.0",
     "web-vitals": "^2.1.4"
   },
   "scripts": {

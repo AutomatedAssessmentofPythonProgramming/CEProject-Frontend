@@ -1,28 +1,35 @@
-// import React from 'react';
-// import { useCodeMirror } from '@uiw/react-codemirror';
-// import { python } from '@codemirror/lang-python';
-// import '@uiw/react-codemirror/code-editor.css';
-// import '@uiw/react-codemirror/markdown-editor.css';
+import React, { useEffect, useState } from 'react';
+import CodeMirror from '@uiw/react-codemirror';
+import { python } from '@codemirror/lang-python';
+import { darcula } from '@uiw/codemirror-themes-all';
+import {material} from '@uiw/codemirror-themes-all'
 
+export default function TestPage() {
+  const [code, setCode] = useState('');
 
-// function TestPage() {
-//   const [code, setCode] = React.useState("print('hello, world!')");
+  useEffect(() => {
+    // Load the text file using the Fetch API
+    fetch(process.env.PUBLIC_URL + '/testcode.txt')
+      .then((response) => response.text())
+      .then((text) => {
+        console.log(text);
+        setCode(text)});
+  }, []);
 
-//   const { ref } = useCodeMirror({
-//     value: code,
-//     mode: python(),
-//     lineNumbers: true,
-//     onChange: (editor, data, value) => {
-//       setCode(value);
-//     },
-//   });
+  const onChange = React.useCallback((value, viewUpdate) => {
+    console.log('value:', value);
+  }, []);
 
-//   return (
-//     <div>
-//       <h1>CodeMirror Example</h1>
-//       <div ref={ref} />
-//     </div>
-//   );
-// }
-
-// export default TestPage;
+  return (
+    <div>
+      This is Code CodeMirror
+      <CodeMirror
+        value={code}
+        height="800px"
+        theme={material}
+        extensions={[python()]}
+        onChange={onChange}
+      />
+    </div>
+  );
+}
