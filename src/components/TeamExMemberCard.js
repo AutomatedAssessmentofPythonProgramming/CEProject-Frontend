@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 import { useState } from 'react';
 import Menu from "./Menu";
 
-export default function TeamCard({
+export default function TeamExMemberCard({
     exercise,teamid
 }){
     const handleOnClose =(e)=>{

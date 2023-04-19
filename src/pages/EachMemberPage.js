@@ -26,12 +26,12 @@ export default function EachMemberPage(){
         
         <div className="min-h-screen h-max flex flex-col justify-start items-center py-12 px-4 sm:px-6 lg:px-8 bg-zinc-900">
             <div className="mt-6 flex justify-start max-w-3xl w-full">
-                <a href={"/team/" + teamid}>
+                <a href={"/team/" + teamid + "/member"}>
                     <button 
                         className="h-10 px-3 text-sm font-medium rounded-md text-white bg-gray-700 hover:bg-gray-800 focus:outline-none"
                         id = "invite"
                     >
-                        &lt; Back to team
+                        &lt; Back
                     </button>
                 </a>
             </div>
@@ -42,13 +42,13 @@ export default function EachMemberPage(){
                 <div className="mt-6 flex justify-end">
                     <button 
                         className="h-10 px-3 mx-2 text-sm font-medium rounded-md text-white bg-red-600 hover:bg-red-800 focus:outline-none"
-                        onClick={handleClick}
+                      
                         id = "EditTeam"
                     >
                         Delete
                     </button>
                 </div>
-                <EditTeam onClose={handleOnClose} open={isOpen}/>
+                
             </div>
             <div className="border-b border-gray-300 max-w-3xl w-full my-8"> </div>
             

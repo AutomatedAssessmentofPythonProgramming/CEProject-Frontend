@@ -8,6 +8,7 @@ export default function NewExercise() {
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
   const [selectedDate, setSelectedDate] = useState('');
+  const [selectedTime, setSelectedTime] = useState('');
 
   //const history = useHistory();
 
@@ -23,11 +24,15 @@ export default function NewExercise() {
     setSelectedDate(event.target.value);
   };
 
+  const handleTimeChange = (event) => {
+    setSelectedTime(event.target.value);
+  };
+
   const handleSubmit = (event) => {
     event.preventDefault();
     // do something with the form data, e.g. submit to a server
-    console.log({ title, description, selectedDate });
-    window.location.href= `/team/${encodeURIComponent(teamid)}`
+    console.log({ title, description, selectedDate ,selectedTime});
+    window.location.href= `/team/${encodeURIComponent(teamid)}/${encodeURIComponent(title)}/edit`
   };
 
   return (
@@ -36,7 +41,7 @@ export default function NewExercise() {
                 <a href={"/team/" + teamid}>
                     <button 
                         className="h-10 px-3 text-sm font-medium rounded-md text-white bg-gray-700 hover:bg-gray-800 focus:outline-none"
-                        id = "invite"
+                        id = "back"
                     >
                         &lt; Back to team
                     </button>
@@ -72,14 +77,22 @@ export default function NewExercise() {
         <div className='text-white text-lg my-2'>
           Due Date
         </div>
-          <input
-            type="date"
-            id="date-picker"
-            value={selectedDate}
-            onChange={handleDateChange}
-            className='rounded-md p-2 w-full'
-            required
-          />
+        <input
+          type="date"
+          id="date-picker"
+          value={selectedDate}
+          onChange={handleDateChange}
+          className='rounded-md p-2'
+          required
+        />
+        <input
+              type="time"
+              id="time-picker"
+              value={selectedTime}
+              onChange={handleTimeChange}
+              className="rounded-md p-2 ml-2"
+              required
+            />
         <div className="flex flex-row justify-end my-4">
                 <button type="submit" className="px-5 py-2 ml-2 bg-blue-700 hover:bg-blue-800 text-white rounded-md">
                     Create

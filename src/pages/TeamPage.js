@@ -1,9 +1,8 @@
-import TeamCard from "../components/TeamCard";
+//Team Owner will see this
+
+import TeamExOwnerCard from "../components/TeamExOwnerCard";
 import { exercisecard } from "../constants/tempCards";
 import { useEffect, useState } from "react";
-import EditTeam from "../components/EditTeam";
-import Addmember from "../components/Addmember";
-import NewExercise from "../components/NewExercise";
 import { useParams } from "react-router-dom";
 
 const card = exercisecard
@@ -12,17 +11,7 @@ export default function TeamPage(){
     const params=useParams();
     const teamid = params.teamid
     const [isLoading, setIsLoading] = useState(false);
-    const [isOpen,setIsOpen] = useState(false);
-
-    const handleOnClose = () => setIsOpen(false)
- 
-
-    const handleClick=(e)=>{
-        
-        setIsOpen(!isOpen)
-        console.log(!isOpen)
-    }
-    
+  
     return(
         
         <div className="min-h-screen h-max flex flex-col justify-start items-center py-12 px-4 sm:px-6 lg:px-8 bg-zinc-900">
@@ -31,15 +20,17 @@ export default function TeamPage(){
                     {teamid}
                 </h2>
                 <div className="mt-6 flex justify-end">
+                    <a href={teamid + "/edit"}>
                     <button 
                         className="h-10 px-3 mx-2 text-sm font-medium rounded-md text-white bg-gray-700 hover:bg-gray-800 focus:outline-none"
-                        onClick={handleClick}
+                       
                         id = "EditTeam"
                     >
                         Edit Team
                     </button>
+                    </a>
                 </div>
-                <EditTeam onClose={handleOnClose} open={isOpen}/>
+                {/* <EditTeam onClose={handleOnClose} open={isOpen}/> */}
             </div>
             <div className="border-b border-gray-300 max-w-3xl w-full my-8"> </div>
           
@@ -76,7 +67,7 @@ export default function TeamPage(){
                 </div>
                 <div className="flex flex-col w-full px-4">
                         {card.map(Title=>
-                            <TeamCard exercise={Title} teamid={teamid}/>
+                            <TeamExOwnerCard exercise={Title} teamid={teamid}/>
                         )}
                 </div>
             </div>

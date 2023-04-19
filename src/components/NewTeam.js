@@ -78,7 +78,7 @@ export default function NewTeam() {
                 </button>
             </div>
       </form>
-        <div className = "my-4 text-white items-center flex flex-row justify-center">
+        {/* <div className = "my-4 text-white items-center flex flex-row justify-center">
             <hr className="h-0.5 w-full bg-gray-300 rounded-md"></hr>
             <p className="mx-4">or</p>
             <hr className="h-0.5 w-full bg-gray-300 rounded-md"></hr> 
@@ -103,7 +103,7 @@ export default function NewTeam() {
                     Join
                 </button>
             </div>
-      </form>
+      </form> */}
       </div>
       
     </div>
