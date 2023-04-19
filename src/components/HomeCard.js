@@ -1,15 +1,17 @@
+//For HomePage.js
+
 import { Link } from "react-router-dom";
 import { useState } from 'react';
 import Menu from "./Menu";
 
-export default function TeamCard({
+export default function HomeCard({
     team
 }){
     const handleOnClose =(e)=>{
         if(e.target.id === "container") setOpen(!open);
     }
     const [open,setOpen] = useState(false);
-    const teammenu = ["Rename","Add member","Invite link","Delete"]
+    const teammenu = ["Edit","Delete"]
     return(
         <>
         <div 

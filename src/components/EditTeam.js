@@ -2,12 +2,11 @@ import React, { useState } from 'react';
 import { useParams,useHistory } from "react-router-dom";
 
 
-export default function NewTeam() {
-    // const params=useParams();
-    // const teamid = params.teamid
+export default function EditTeam() {
+    const params=useParams();
+    const teamid = params.teamid
   const [team, setTeam] = useState('');
   const [teamId, setTeamId] = useState('');
-  const [teamId2, setTeamId2] = useState('');
   //const history = useHistory();
 
   const handleTeamChange = (event) => {
@@ -18,9 +17,6 @@ export default function NewTeam() {
     setTeamId(event.target.value);
   };
 
-  const handleTeamId2Change = (event) => {
-    setTeamId2(event.target.value);
-  };
   const handleSubmit = (event) => {
     event.preventDefault();
     // do something with the form data, e.g. submit to a server
@@ -28,28 +24,21 @@ export default function NewTeam() {
     window.location.href= `/team/${encodeURIComponent(teamId)}`
   };
 
-  const handleSubmit2 = (event) => {
-    event.preventDefault();
-    // do something with the form data, e.g. submit to a server
-    console.log({teamId2});
-    window.location.href= `/team/${encodeURIComponent(teamId2)}`
-  };
-
   return (
     <div className="min-h-screen h-max flex flex-col justify-start items-center py-12 px-4 sm:px-6 lg:px-8 bg-zinc-900">
         <div className="mt-6 flex justify-start max-w-md w-full mb-8">
-                <a href={"/home"}>
+                <a href={"/team/" + teamid}>
                     <button 
                         className="h-10 px-3 text-sm font-medium rounded-md text-white bg-gray-700 hover:bg-gray-800 focus:outline-none"
                         id = "invite"
                     >
-                        &lt; Back to home
+                        &lt; Back to Team
                     </button>
                 </a>
             </div>
       <div className='border border-gray-300 max-w-md w-full rounded-md px-4'>
       <h1 className="font-semibold text-2xl text-white my-4">
-        Create Team
+        Edit Team
       </h1>
       <form onSubmit={handleSubmit}>
         <div className='text-white text-lg my-2'>
@@ -61,6 +50,7 @@ export default function NewTeam() {
             value={team}
             onChange={handleTeamChange}
             className='rounded-md p-2 w-full'
+            required
           />
         <div className='text-white text-lg my-2'>
           Team ID
@@ -71,10 +61,11 @@ export default function NewTeam() {
             value={teamId}
             onChange={handleTeamIdChange}
             className='rounded-md p-2 w-full'
+            required
           />
         <div className="flex flex-row justify-end my-4">
-                <button type="submit" className="px-5 py-2 ml-2 bg-blue-700 hover:bg-blue-800 text-white rounded-md">
-                    Create
+                <button type="submit" className="px-5 py-2 ml-2 bg-green-700 hover:bg-green-800 text-white rounded-md">
+                    Save
                 </button>
             </div>
       </form>

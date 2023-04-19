@@ -52,7 +52,7 @@ export default function Login(){
                 
                 )
             } */}
-            <div className="my-5">
+            {/* <div className="my-5">
                 <button
                     id = "google"
                     className="text-white bg-gray-900 hover:bg-gray-700 w-full border border-gray-400 font-medium rounded-md text-sm px-3 py-2 text-center items-center" 
@@ -61,10 +61,10 @@ export default function Login(){
                 </button>
             </div>
             <div className = "my-5 text-gray-400 items-center flex flex-row justify-center">
-                <hr className="h-0.5 w-full bg-gray-200 rounded-md"></hr>
+                <hr className="h-0.5 w-full bg-gray-300 rounded-md"></hr>
                 <p className="mx-4">or</p>
-                <hr className="h-0.5 w-full bg-gray-200 rounded-md"></hr> 
-            </div>
+                <hr className="h-0.5 w-full bg-gray-300 rounded-md"></hr> 
+            </div> */}
             <div className="my-5">
                 <input
                     onChange={(e) => setEmail(e.target.value)}
