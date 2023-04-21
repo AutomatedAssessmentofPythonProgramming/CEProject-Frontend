@@ -3,11 +3,12 @@ import {
   BrowserRouter,
   Routes,
   Route,
+  redirect,
 } from "react-router-dom";
 import Signuppage from './pages/SignupPage';
 import Loginpage from './pages/LoginPage';
 import Homepage from './pages/HomePage';
-import SettingPage from './pages/SettingPage';
+import AccountPage from './pages/AccountPage';
 import MagageTeamPage from './pages/ManageTeamPage';
 import TeamPage from './pages/TeamPage';
 import TeamMemberPage from './pages/TeamMemberPage';
@@ -21,6 +22,8 @@ import EachMemberPage from './pages/EachMemberPage';
 import EditExercisePage from './pages/EditExercisePage';
 import EditTeam from './components/EditTeam';
 import InviteMember from './components/InviteMember';
+import JoinTeam from './components/JoinTeam';
+import Setting from './components/Setting';
 
 function App() {
   return (
@@ -32,8 +35,10 @@ function App() {
             <Route path="/login" element={<Loginpage/>} />
             <Route path="/signup" element={<Signuppage/>} />
             <Route path="/home" element={<Homepage/>} />
-            <Route path="/setting" element={<SettingPage/>}/>
+            <Route path="/account" element={<AccountPage/>}/>
+            <Route path="/setting" element={<Setting/>}/>
             <Route path="/createteam" element={<NewTeam/>}/>
+            <Route path="/jointeam" element={<JoinTeam/>}/>
             <Route path="/manageteam" element={<MagageTeamPage/>}/>
             <Route path="/team" element={<TeamPage/>}></Route>
             <Route path="/team/:teamid" element= {<TeamPage/>}/>

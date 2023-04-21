@@ -4,7 +4,9 @@ import FormAction from "./FormAction";
 import Input from "./Input";
 import { useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
-
+import axios from 'axios';
+import jwt_decode from 'jwt-decode';
+import AuthService from '../services/Auth.Service';
 const fields=signupFields;
 let fieldsState={};
 
@@ -36,69 +38,25 @@ export default function Signup(){
   //const handleChange=(e)=>setSignupState({...signupState,[e.target.id]:e.target.value});
 
   const onSubmit=(e)=>{
-    //e.preventDefault();
+    e.preventDefault();
     //console.log(signupState)
-    console.log(emailReg, name, surname, passwordReg, confirmpassword)
-    createAccount()
-    let path = `/home`; 
-    navigate(path);
+    // console.log(emailReg, name, surname, passwordReg, confirmpassword)
+    const username = emailReg.split('@')[0]
+    console.log(username)
+    AuthService.register(emailReg,username,passwordReg)
+    // let path = `/home`; 
+    // navigate(path);
   }
 
   const handleClick=(e)=>{
     setSelected(e.target.id)
     setOpen(!open)
   }
-  //handle Signup API Integration here
-  const createAccount=()=>{
-
-  }
-
+ 
     return(
-        <form className="mt-8 space-y-6" onSubmit={handleSubmit(onSubmit)}>
+        <form className="mt-8 space-y-6" onSubmit={onSubmit}>
         <div className="">
-            {/* <div className="my-5">
-                <button
-                    id = "google"
-                    className="text-white bg-gray-900 hover:bg-gray-700 w-full border border-gray-400 font-medium rounded-md text-sm px-3 py-2 text-center items-center" 
-                >
-                Sign in with Google
-                </button>
-            </div>
-            <div className = "my-5 text-gray-400 items-center flex flex-row justify-center">
-                <hr className="h-0.5 w-full bg-gray-200 rounded-md"></hr>
-                <p className="mx-4">or</p>
-                <hr className="h-0.5 w-full bg-gray-200 rounded-md"></hr> 
-            </div>
-            <button 
-              id="dropdownDefault" 
-              data-dropdown-toggle="dropdown" 
-              className="text-white bg-gray-900 hover:bg-gray-700 w-full border border-gray-400 font-medium rounded-md text-sm px-3 py-2 text-center justify-between inline-flex items-center" 
-              type="button"
-              onClick={()=>setOpen(!open)}>
-              {selected ? selected : "Choose your role"}
-              <svg class="ml-2 w-4 h-4" aria-hidden="true" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7">
-                </path>
-              </svg>
-            </button>
-            <div id="dropdown" class="">
-              <ul className={`text-sm border rounded-md border-gray-400 ${open ?'visible mt-2' : 'invisible max-h-0'}`}>
-                <li 
-                  className='p-2 text-sm hover:bg-gray-700 hover:text-white'
-                  id="Student"
-                  onClick={handleClick}
-                >
-                  Student
-                </li>
-                <li 
-                  className='p-2 text-sm hover:bg-gray-700 hover:text-white'
-                  id="Teacher"
-                  onClick={handleClick}
-                >
-                  Teacher
-                </li>
-              </ul>
-          </div> */}
+            
           <div className="my-5">
             <input
               onChange={(e) => setEmailReg(e.target.value)}
@@ -209,7 +167,7 @@ export default function Signup(){
               )}
           </div>
           
-          <FormAction handleSubmit={handleSubmit(onSubmit)} text="Signup" />
+          <FormAction handleSubmit={onSubmit} text="Signup" />
         </div>
 
          

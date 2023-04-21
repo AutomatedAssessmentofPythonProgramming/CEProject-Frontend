@@ -4,13 +4,15 @@ import TeamExOwnerCard from "../components/TeamExOwnerCard";
 import { exercisecard } from "../constants/tempCards";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-
+import TeamService from "../services/Team.Service";
 const card = exercisecard
 
 export default function TeamPage(){
     const params=useParams();
     const teamid = params.teamid
+    const teamdetail = TeamService.getTeam(teamid)
     const [isLoading, setIsLoading] = useState(false);
+
   
     return(
         

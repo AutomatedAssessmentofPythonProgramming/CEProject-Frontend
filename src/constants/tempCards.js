@@ -1,15 +1,18 @@
 const tempcard=[
     {
-        teamname:"CE_01",
-        teamid:"CE_01"
+        "pk": 1,
+        "name": "CE1",
+        "membersCount": 1
     },
     {
-        teamname:"CE_02",
-        teamid:"CE_02"
+        "pk": 2,
+        "name": "CE2",
+        "membersCount": 1
     },
     {
-        teamname:"CE_03",
-        teamid:"CE_03"
+        "pk": 1,
+        "name": "CE3",
+        "membersCount": 1
     },
 ]
 const teammanagecard=[

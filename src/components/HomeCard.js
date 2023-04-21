@@ -3,6 +3,7 @@
 import { Link } from "react-router-dom";
 import { useState } from 'react';
 import Menu from "./Menu";
+import TeamService from "../services/Team.Service";
 
 export default function HomeCard({
     team
@@ -12,6 +13,14 @@ export default function HomeCard({
     }
     const [open,setOpen] = useState(false);
     const teammenu = ["Edit","Delete"]
+    const handleDelete = (e)=>{
+        console.log("delete team" + team.pk)
+        TeamService.deleteTeam(team.pk)
+    }
+    const handleEdit = (e)=>{
+        console.log("edit")
+        window.location.href= `/team/${encodeURIComponent(team.pk)}/edit`
+    }
     return(
         <>
         <div 
@@ -19,9 +28,9 @@ export default function HomeCard({
             id='container'
             onClick={handleOnClose}
         >
-            <Link to={"/team/" + team.teamid} className="w-full py-4 px-3">
+            <Link to={"/team/" + team.pk} className="w-full py-4 px-3">
             <span className="">
-                {team.teamname} 
+                {team.name} 
             </span>  
             </Link>            
             <button 
@@ -34,7 +43,22 @@ export default function HomeCard({
             </button>
         </div>
         <div id="dropdown" class={`flex flex-col items-end ${open ?'visible' : 'invisible max-h-0'}`}>
-            <Menu menuname={teammenu}/>
+        <ul className={`text-sm w-32 border rounded-md border-gray-500`}>
+            <li 
+                className={`p-2 text-sm bg-gray-700 hover:bg-gray-800 text-white`}
+                id="edit"
+                onClick={handleEdit}
+            >
+                Edit
+            </li>       
+            <li 
+                className={`p-2 text-sm bg-gray-700 hover:bg-gray-800 text-white`}
+                id="delete"
+                onClick={handleDelete}
+            >
+                Delete
+            </li>       
+        </ul>
           </div>
         </>
     )

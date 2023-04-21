@@ -3,11 +3,13 @@ import { tempcard } from "../constants/tempCards"
 import { useEffect, useState } from "react";
 import NewTeam from "../components/NewTeam";
 import Navbar from "../components/Navbar";
+import TeamService from "../services/Team.Service";
 
 const card = tempcard
 
 export default function Homepage(){
     const [isLoading, setIsLoading] = useState(false);
+    const allteam = TeamService.getAllTeam().teams
     // const [isOpen,setIsOpen] = useState(false);
     // const handleOnClose = () => setIsOpen(false)
     
@@ -16,7 +18,7 @@ export default function Homepage(){
     //     setIsOpen(!isOpen)
     //     console.log(!isOpen)
     // }
-
+    console.log(localStorage.getItem("user"))
 
     return(
         <>
@@ -35,12 +37,20 @@ export default function Homepage(){
                             + New Team
                         </button>
                         </a>
-                        <a href="/manageteam">
+                        {/* <a href="/manageteam">
                         <button 
                             className="h-10 px-3 text-sm font-medium rounded-md text-white bg-gray-700 hover:bg-gray-800 focus:outline-none"
                             id = "ManageTeam"
                         >
                             Manage Team
+                        </button>
+                        </a> */}
+                        <a href="/jointeam">
+                        <button 
+                            className="h-10 px-3 mx-2 text-sm font-medium rounded-md text-white bg-green-700 hover:bg-green-800 focus:outline-none"
+                            id = "JoinTeam"
+                        >
+                            + Join Team
                         </button>
                         </a>
                      </div>

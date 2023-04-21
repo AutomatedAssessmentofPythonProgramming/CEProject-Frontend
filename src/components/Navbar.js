@@ -58,7 +58,7 @@ export default function Navbar(){
             Home
           </a>
           <a
-            href="/setting"
+            href="/account"
             className="block mt-4 md:inline-block md:mt-0 text-white hover:text-gray-300 px-3 py-2 rounded-md text-base font-medium"
           >
             Setting
@@ -66,6 +66,7 @@ export default function Navbar(){
           <a
             href="/login"
             className="block mt-4 md:inline-block md:mt-0 text-red-500 hover:text-red-700 px-3 py-2 rounded-md text-base font-medium"
+            
           >
             Logout
           </a>

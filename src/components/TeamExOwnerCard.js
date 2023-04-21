@@ -55,7 +55,20 @@ export default function TeamExOwnerCard({
             
         </div>
         <div id="dropdown" class={`flex flex-col items-end ${open ?'visible' : 'invisible max-h-0'}`}>
-            <Menu menuname={exercisemenu}/>
+        <ul className={`text-sm w-32 border rounded-md border-gray-500`}>
+            <li 
+                className={`p-2 text-sm bg-gray-700 hover:bg-gray-800 text-white`}
+                id="edit"
+            >
+                Edit
+            </li>   
+            <li 
+                className={`p-2 text-sm bg-gray-700 hover:bg-gray-800 text-white`}
+                id="delete"
+            >
+                Delete
+            </li>   
+        </ul>
           </div>
         </>
     )
