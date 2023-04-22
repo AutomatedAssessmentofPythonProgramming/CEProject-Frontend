@@ -1,6 +1,8 @@
-import React, { useState } from 'react';
+import React, { useState,useEffect } from 'react';
 import { useParams,useHistory } from "react-router-dom";
-
+import ExerciseService from '../services/Exercise.Service';
+import WorkbookService from '../services/Workbook.Service';
+import { type } from '@testing-library/user-event/dist/type';
 
 export default function NewExercise() {
     const params=useParams();
@@ -10,6 +12,13 @@ export default function NewExercise() {
   const [selectedDate, setSelectedDate] = useState('');
   const [selectedTime, setSelectedTime] = useState('');
 
+  const today = new Date()
+  const todayTimeString = today.toISOString();
+  // const month = (today.getMonth()+1).toString()
+  // console.log(typeof(todayTimeString))
+  // console.log(todayTimeString)
+  // const currentDate = (today.getFullYear()).toString() + '-' + month.padStart(2,'0') + '-' + (today.getDate()).toString().padStart(2,'0') + 'T'+(today.getHours()).toString().padStart(2,'0') + ':' + (today.getMinutes()).toString().padStart(2,'0') + ':' + (today.getSeconds()).toString().padStart(2,'0')+'.000Z'
+  
   //const history = useHistory();
 
   const handleTitleChange = (event) => {
@@ -32,7 +41,19 @@ export default function NewExercise() {
     event.preventDefault();
     // do something with the form data, e.g. submit to a server
     console.log({ title, description, selectedDate ,selectedTime});
-    window.location.href= `/team/${encodeURIComponent(teamid)}/${encodeURIComponent(title)}/edit`
+    const inputdate = selectedDate+' '+selectedTime
+    // const inputdate = '2023-04-23 10:30:00'
+    const duetime = new Date(inputdate)
+    const duetimeString = duetime.toISOString();
+    ExerciseService.createExercise(title,description,"string","string","string")
+    .then((res) => {
+      WorkbookService.createWorkbook(teamid,res.id,"0",todayTimeString,duetimeString,true)
+    })
+    // console.log(duetime)
+    // console.log(typeof(duetime))
+    // console.log(currentDate)
+    // console.log(typeof(currentDate))
+    //window.location.href= `/team/${encodeURIComponent(teamid)}/${encodeURIComponent(title)}/edit`
   };
 
   return (

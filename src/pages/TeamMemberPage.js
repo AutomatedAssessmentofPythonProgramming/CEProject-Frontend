@@ -17,7 +17,8 @@ export default function TeamMemberPage(){
     for(let i=0;i<membercard.length;i++){console.log(membercard[i].studentid)}
     
     const [isLoading, setIsLoading] = useState(false);
-  
+    
+
     return(
         <>
         <div className="min-h-screen h-max flex flex-col justify-start items-center py-12 px-4 sm:px-6 lg:px-8 bg-zinc-900">

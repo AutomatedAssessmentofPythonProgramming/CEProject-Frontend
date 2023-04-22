@@ -1,18 +1,25 @@
 import axios from "axios";
+//import AuthHeaders from "./AuthHeader";
 import authHeader from "./AuthHeader";
 import jwt_decode from 'jwt-decode';
+import GetCookie from "./GetCookie";
 
+const csrfToken = GetCookie()
+console.log(csrfToken)
 const API_URL = 'https://nutapi.surawit.fish/auth/'
 
+
 class AuthService{
+   
     login(email, password) {
         console.log(email,password)
+        
         return axios.post(API_URL + 'login/', {
             email, 
             password
-        }, { headers: authHeader() })
+        })
         .then(response => {
-            console.log(response.data)
+            console.log(response)
             if (response.data.tokens) {
                 const { access, refresh } = response.data.tokens;
                 // console.log({access,refresh})
@@ -33,6 +40,8 @@ class AuthService{
 
     logout() {
         localStorage.removeItem("user");
+        localStorage.removeItem("access_token");
+        localStorage.removeItem("refresh_token");
     }
 
     register(email, username, password) {
@@ -41,7 +50,7 @@ class AuthService{
             email,
             username,
             password
-        }, { headers: authHeader() })
+        })
         .then(response=>{
             console.log(response.data)
             return response.data

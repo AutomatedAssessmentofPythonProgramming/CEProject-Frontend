@@ -34,24 +34,59 @@ const teammanagecard=[
 ]
 const exercisecard=[
     {
-        exercisename:"ex1",
-        description:"print hello",
-        exerciseid:"ex1",
-        duedate:"29/11/2565 23:59"
+        "dueTime": "2023-04-21T17:59:03.328000Z",
+        "openTime": "2023-04-21T17:59:03.328000Z",
+        "isOpen": true,
+        "week": 10,
+        "Team": {
+          "pk": 1,
+          "name": "CECE"
+        },
+        "exercise": {
+          "pk": 1,
+          "title": "ex1",
+          "instruction": "print hello",
+          "created": "2023-04-21T17:56:33.616728Z",
+          "updated": "2023-04-21T17:56:33.616748Z",
+          "isDone": false
+        }
     },
     {
-        exercisename:"ex2",
-        description:"for loop",
-        exerciseid:"ex2",
-        duedate:"30/12/2565 23:59"
+        "dueTime": "2023-04-21T17:59:03.328000Z",
+        "openTime": "2023-04-21T17:59:03.328000Z",
+        "isOpen": true,
+        "week": 10,
+        "Team": {
+          "pk": 1,
+          "name": "CECE"
+        },
+        "exercise": {
+          "pk": 2,
+          "title": "ex2",
+          "instruction": "print hello2",
+          "created": "2023-04-21T17:56:33.616728Z",
+          "updated": "2023-04-21T17:56:33.616748Z",
+          "isDone": true
+        }
     },
     {
-        exercisename:"ex3",
-        description:"print hello",
-        exerciseid:"ex3",
-        duedate:"30/12/2565 23:59"
+        "dueTime": "2023-04-21T17:59:03.328000Z",
+        "openTime": "2023-04-21T17:59:03.328000Z",
+        "isOpen": true,
+        "week": 10,
+        "Team": {
+          "pk": 1,
+          "name": "CECE"
+        },
+        "exercise": {
+          "pk": 3,
+          "title": "ex3",
+          "instruction": "print hello3",
+          "created": "2023-04-21T17:56:33.616728Z",
+          "updated": "2023-04-21T17:56:33.616748Z",
+          "isDone": false
+        }
     },
-   
 ]
 const membercard=[
     {

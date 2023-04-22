@@ -4,15 +4,24 @@
 import { Link } from "react-router-dom";
 import { useState } from 'react';
 import Menu from "./Menu";
+import ExerciseService from "../services/Exercise.Service";
 
 export default function TeamExOwnerCard({
-    exercise,teamid
+    exercise,teamid,onDelete
 }){
     const handleOnClose =(e)=>{
         if(e.target.id === "container") setOpen(!open);
     }
     const [open,setOpen] = useState(false);
-    const exercisemenu = ["Edit","Delete"]
+    // const [dueDate,time] = exercise.dueTime.split("T")
+    // const dueTime = time.split("Z")[0]
+    const date = new Date(exercise.dueTime);
+    const dateDisplay = date.toString().substring(4, 21)
+
+    const handleEdit = (e)=>{
+        console.log("edit")
+        window.location.href= `/team/${encodeURIComponent(teamid)}/edit`
+    }
     return(
         <>
         <div 
@@ -20,25 +29,25 @@ export default function TeamExOwnerCard({
             id='container'
             onClick={handleOnClose}
         >
-            <div className="flex flex-col">
-                <Link to={exercise.exerciseid} className="w-full py-4 px-2 text-white text-lg font-bold ">
+            <div className="flex flex-col w-24">
+                <Link to={exercise.exerciseid+"/submit"} className="w-full py-4 px-2 text-white text-lg font-bold ">
                 <span className="">
-                    {exercise.exercisename} 
+                    {exercise.exercise.title} 
                 </span>  
                 </Link>   
                 <span className="py-4 px-2 text-white text-base font-normal">
-                    {exercise.description}
+                    {exercise.exercise.instruction}
                 </span>
             </div>     
             <div className="py-12 px-2 text-white text-lg font-normal">
-                {exercise.duedate}
+                <p>{dateDisplay}</p>
             </div>    
-            <Link to={exercise.exerciseid+"/edit"} className="py-12 px-2 text-blue-600 hover:text-blue-700 text-lg font-medium ">
+            <Link to={exercise.exercise.pk+"/edit"} className="py-12 px-2 text-blue-600 hover:text-blue-700 text-lg font-medium ">
                 <span className="">
                     Edit
                 </span>  
             </Link>   
-            <Link to={exercise.exerciseid+"/submit"} className="py-12 pl-12 text-blue-600 hover:text-blue-700 text-lg font-medium ">
+            <Link to={exercise.exercise.pk+"/submit"} className="py-12 pl-12 text-blue-600 hover:text-blue-700 text-lg font-medium ">
             {/* <Link to={exercise.exerciseid} className="py-12 pl-12 text-blue-600 hover:text-blue-700 text-lg font-medium "> */}
                 <span className="">
                     View Submission
@@ -59,12 +68,14 @@ export default function TeamExOwnerCard({
             <li 
                 className={`p-2 text-sm bg-gray-700 hover:bg-gray-800 text-white`}
                 id="edit"
+                onClick={handleEdit}
             >
                 Edit
             </li>   
             <li 
                 className={`p-2 text-sm bg-gray-700 hover:bg-gray-800 text-white`}
                 id="delete"
+                onClick={() => onDelete(exercise.exercise.pk)}
             >
                 Delete
             </li>   

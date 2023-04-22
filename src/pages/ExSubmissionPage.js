@@ -3,7 +3,7 @@ import { membersubmitcard,exercisecard } from "../constants/tempCards";
 import { useEffect, useState } from "react";
 import EditTeam from "../components/EditTeam";
 import Addmember from "../components/Addmember";
-import { useParams } from "react-router-dom";
+import { useParams,Link } from "react-router-dom";
 import ExSubmissionCard from "../components/ExSubmissionCard";
 import AllMemberSearch from "../components/AllMemberSearch";
 
@@ -24,13 +24,7 @@ export default function ExSubmissionPage(){
     console.log(memberid)
     const [isLoading, setIsLoading] = useState(false);
     const [isOpen,setIsOpen] = useState(false);
-    const handleOnClose = () => setIsOpen(false)
-    
-    const handleClick=(e)=>{
-        
-        setIsOpen(!isOpen)
-        console.log(!isOpen)
-    }
+
     return(
         <>
         <div className="min-h-screen h-max flex flex-col justify-start items-center py-12 px-4 sm:px-6 lg:px-8 bg-zinc-900">
@@ -47,8 +41,7 @@ export default function ExSubmissionPage(){
             <div className="flex justify-between max-w-3xl w-full">
                 <h2 className="mt-6 text-3xl font-bold text-white">
                     {exid}
-                </h2>
-                
+                </h2> 
                 <div className="mt-6 flex justify-end">
                     <button 
                         className="h-10 px-3 mx-2 text-sm font-medium rounded-md text-white bg-blue-800 hover:bg-blue-900 focus:outline-none"
@@ -65,10 +58,9 @@ export default function ExSubmissionPage(){
                         Edit Description
                     </button>
                 </div>
-                <Addmember onClose={handleOnClose} open={isOpen}/>
             </div>
             <h2 className="mt-6 text-xl font-medium text-white max-w-3xl w-full">
-                    {exdes.description}
+                    {exdes.exercise.instruction}
             </h2>
             <h2 className="mt-6 text-xl font-medium text-white max-w-3xl w-full">
                     {"Due Date: "+exdes.duedate}

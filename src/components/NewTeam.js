@@ -22,7 +22,7 @@ export default function NewTeam() {
     // do something with the form data, e.g. submit to a server
     console.log({ team, teamId: detail});
     TeamService.createTeam(team,detail)
-    //window.location.href= `/team/${encodeURIComponent(detail)}`
+    window.location.href= `/home`
   };
 
   return (

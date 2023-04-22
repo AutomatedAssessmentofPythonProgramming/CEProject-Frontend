@@ -14,10 +14,10 @@ class TeamService{
         return axios.post(API_URL,{name,detail}, { headers: authHeader() })
         .then(response => {
             console.log(response.data)
-            if(response.data.team){
-                const pk=response.data.team[0]
-                window.location.href= `/team/${encodeURIComponent(pk)}`
-            }
+            // if(response.data.team){
+            //     // const pk=response.data.team[0]
+            //     // window.location.href= `/team/${encodeURIComponent(pk)}`
+            // }
 
             return response.data;
         })
@@ -46,8 +46,8 @@ class TeamService{
         return axios.get(API_URL+teamid+'/exercises/',{headers:authHeader()})
     }
 
-    addTeamMember(code){
-        return axios.post(ADDMEMBER_URL,code,{headers:authHeader()})
+    addTeamMember(invite_code){
+        return axios.post(ADDMEMBER_URL,{invite_code},{headers:authHeader()})
     }
 }
 

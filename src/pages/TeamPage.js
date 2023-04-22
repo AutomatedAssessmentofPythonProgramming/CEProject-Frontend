@@ -5,21 +5,39 @@ import { exercisecard } from "../constants/tempCards";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import TeamService from "../services/Team.Service";
+import ExerciseService from "../services/Exercise.Service";
+
 const card = exercisecard
 
 export default function TeamPage(){
     const params=useParams();
     const teamid = params.teamid
-    const teamdetail = TeamService.getTeam(teamid)
+    const [teamDetail,setTeamDetail] = useState([])
+    const [teamExercise,setTeamExercise] = useState([])
     const [isLoading, setIsLoading] = useState(false);
-
+    const [isStaff,setIsStaff] = useState(false)
+    useEffect(() => {
+        TeamService.getTeam(teamid).then((res) => {
+          setTeamDetail(res.data);
+          //console.log(teamDetail)
+        });
+        TeamService.getTeamExercise(teamid).then((res) => {
+            setTeamExercise(res.data);
+        });
+      }, []);
   
+    const handleDelete = async (pk)=>{
+        console.log("delete exercise" + pk)
+        setTeamExercise(teamExercise.filter((item) => item.pk !== pk))
+        await ExerciseService.deleteExercise(pk)
+    }
+
     return(
         
         <div className="min-h-screen h-max flex flex-col justify-start items-center py-12 px-4 sm:px-6 lg:px-8 bg-zinc-900">
             <div className="flex justify-between max-w-3xl w-full">
                 <h2 className="mt-6 text-3xl font-bold text-white">
-                    {teamid}
+                    {teamDetail.name}
                 </h2>
                 <div className="mt-6 flex justify-end">
                     <a href={teamid + "/edit"}>
@@ -33,6 +51,9 @@ export default function TeamPage(){
                     </a>
                 </div>
                 {/* <EditTeam onClose={handleOnClose} open={isOpen}/> */}
+            </div>
+            <div className="max-w-3xl w-full mt-6 text-xl font-medium text-white">
+                {teamDetail.detail}
             </div>
             <div className="border-b border-gray-300 max-w-3xl w-full my-8"> </div>
           
@@ -68,8 +89,8 @@ export default function TeamPage(){
                     <p>      </p>
                 </div>
                 <div className="flex flex-col w-full px-4">
-                        {card.map(Title=>
-                            <TeamExOwnerCard exercise={Title} teamid={teamid}/>
+                        {teamExercise.map(Title=>
+                            <TeamExOwnerCard exercise={Title} teamid={teamid} onDelete={handleDelete}/>
                         )}
                 </div>
             </div>

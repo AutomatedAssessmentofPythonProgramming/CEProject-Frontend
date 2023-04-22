@@ -4,8 +4,8 @@ import authHeader from "./AuthHeader";
 const API_URL="https://nutapi.surawit.fish/api/workbook/"
 
 class WorkbookService{
-    createWorkbook(team,exercise,week,opentime,duetime,isOpen){
-        return axios.post(API_URL,{team,exercise,week,opentime,duetime,isOpen}, { headers: authHeader() })
+    createWorkbook(team,exercise,week,openTime,dueTime,isOpen){
+        return axios.post(API_URL,{team,exercise,week,openTime,dueTime,isOpen}, { headers: authHeader() })
         .then(response => {
             console.log(response.data)
             return response.data
@@ -19,8 +19,8 @@ class WorkbookService{
         return axios.get(API_URL+workbookid,{ headers: authHeader() })
     }
 
-    editWorkbook(workbookid,team,exercise,week,opentime,duetime,isOpen){
-        return axios.patch(API_URL+workbookid,{team,exercise,week,opentime,duetime,isOpen},{headers:authHeader()})
+    editWorkbook(workbookid,team,exercise,week,openTime,dueTime,isOpen){
+        return axios.patch(API_URL+workbookid,{team,exercise,week,openTime,dueTime,isOpen},{headers:authHeader()})
     }
 
     deleteWorkbook(workbookid){

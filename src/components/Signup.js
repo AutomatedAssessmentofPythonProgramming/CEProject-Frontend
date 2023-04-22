@@ -30,6 +30,8 @@ export default function Signup(){
   const [term, setTerm] = useState(false);
   const [open,setOpen] = useState(false);
   const [selected,setSelected] = useState("");
+  const [message, setMessage] = useState("");
+  const [loading, setLoading] = useState(false);
 
   const password = watch("password");
 
@@ -39,11 +41,27 @@ export default function Signup(){
 
   const onSubmit=(e)=>{
     e.preventDefault();
+    setStudentid("0")
     //console.log(signupState)
     // console.log(emailReg, name, surname, passwordReg, confirmpassword)
     const username = emailReg.split('@')[0]
     console.log(username)
     AuthService.register(emailReg,username,passwordReg)
+    .then(()=>{
+      AuthService.editUserProfile(username,emailReg,name,surname,studentid)
+      navigate('/')
+      window.location.reload();
+    }, error => {
+      const resMessage = 
+          (error.response &&
+              error.response.data && 
+              error.response.data.message) ||
+          error.message ||
+          error.toString();
+      
+      setLoading(false);
+      setMessage(resMessage);
+  })
     // let path = `/home`; 
     // navigate(path);
   }
