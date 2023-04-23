@@ -41,27 +41,30 @@ export default function Signup(){
 
   const onSubmit=(e)=>{
     e.preventDefault();
-    setStudentid("0")
+    // setStudentid("0")
     //console.log(signupState)
-    // console.log(emailReg, name, surname, passwordReg, confirmpassword)
+    console.log(emailReg, name, surname,studentid, passwordReg, confirmpassword)
     const username = emailReg.split('@')[0]
-    console.log(username)
-    AuthService.register(emailReg,username,passwordReg)
-    .then(()=>{
-      AuthService.editUserProfile(username,emailReg,name,surname,studentid)
-      navigate('/')
-      window.location.reload();
-    }, error => {
-      const resMessage = 
-          (error.response &&
-              error.response.data && 
-              error.response.data.message) ||
-          error.message ||
-          error.toString();
-      
-      setLoading(false);
-      setMessage(resMessage);
-  })
+    // console.log(username)
+    if(passwordReg.length>=6 && passwordReg==confirmpassword){
+      AuthService.register(emailReg,username,passwordReg,name,surname)
+      .then(()=>{
+        // AuthService.editUserProfile(username,emailReg,name,surname,studentid)
+        navigate('/')
+        window.location.reload();
+      }, error => {
+        const resMessage = 
+            (error.response &&
+                error.response.data && 
+                error.response.data.message) ||
+            error.message ||
+            error.toString();
+        
+        setLoading(false);
+        setMessage(resMessage);
+      })
+    }
+    else{console.log("nooooo")}
     // let path = `/home`; 
     // navigate(path);
   }
@@ -108,9 +111,8 @@ export default function Signup(){
               onChange={(e) => setSurname(e.target.value)}
             />
           </div>
-
-          {selected == "Student" ? 
-            <div className="my-5">
+         
+            {/* <div className="my-5">
               <input
                 type="number"
                 className={`rounded-md appearance-none relative block w-full px-3 py-2 border border-gray-400 placeholder-gray-400 text-gray-900 focus:outline-none focus:ring-grey-800 focus:border-grey-800 focus:placeholder-grey-800 focus:z-10 sm:text-sm`}
@@ -135,8 +137,7 @@ export default function Signup(){
                     {errors.studentid.message}
                   </span>
                 )}
-            </div>
-          : <></>}
+            </div> */}
           
           <div className="my-5">
             <input
@@ -148,8 +149,8 @@ export default function Signup(){
                 required
                 {...register("password", {
                   minLength: {
-                    value: 4,
-                    message: "Passwords must be at least 4 characters",
+                    value: 6,
+                    message: "Passwords must be at least 6 characters",
                   },
                 })}
                 onChange={(e) => setPasswordReg(e.target.value)}
@@ -185,7 +186,12 @@ export default function Signup(){
               )}
           </div>
           
-          <FormAction handleSubmit={onSubmit} text="Signup" />
+          <button
+                type='submit'
+                className="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-zinc-900 hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500 mt-10"
+            >
+                Signup
+            </button>
         </div>
 
          

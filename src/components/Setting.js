@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState,useEffect } from 'react';
 import { settingFields } from "../constants/formFields"
 import FormAction from './FormAction';
 import Input from "./Input";
@@ -26,11 +26,22 @@ export default function Setting(){
   const [open,setOpen] = useState(false);
   const [selected,setSelected] = useState("");
 
+  const [profileDetail,setprofileDetail] = useState([])
+  useEffect(() => {
+      AuthService.getUserProfile().then((res) => {
+        setprofileDetail(res.data);
+        // console.log(allTeams)
+      });
+    }, []);
+
   const handleSubmit=(event)=>{
-      event.preventDefault();
-      console.log(emailReg.split("@")[0],emailReg,name,surname,studentid)
-      AuthService.editUserProfile(emailReg.split("@")[0],emailReg,name,surname,studentid)
-    };
+    event.preventDefault();
+    console.log(emailReg.split("@")[0],emailReg,name,surname,studentid)
+    if(studentid.length==8){
+        AuthService.editUserProfile(emailReg.split("@")[0],emailReg,name,surname,studentid)
+        window.location.href= `/account`
+      };
+    }
   //handle Signup API Integration here
   return(
     <div className="min-h-screen h-max flex justify-center py-12 px-4 sm:px-6 lg:px-8 bg-zinc-900">
@@ -38,7 +49,8 @@ export default function Setting(){
       <p className="text-white text-3xl font-bold">Edit Account</p>
       <form onSubmit={handleSubmit} className="bg-gray-700 py-4 px-4 rounded-md mt-8 space-y-6">
       <div className="max-w-xl">
-        <div className="my-5">
+        <p className="text-white text-lg">Email</p>
+        <div className="my-2">
           <input
             onChange={(e) => setEmailReg(e.target.value)}
             type="email"
@@ -46,57 +58,60 @@ export default function Setting(){
             id="email"
             name="email"
             required
-            placeholder="Email address"
+            placeholder={profileDetail.email}
           />
         </div>
-        <div className="my-5">
+        <p className="text-white text-lg">First Name</p>
+        <div className="my-2">
           <input
             type="text"
             className="rounded-md appearance-none relative block w-full px-3 py-2 border border-gray-400 placeholder-gray-400 text-gray-900 focus:outline-none focus:ring-grey-800 focus:border-grey-800 focus:placeholder-grey-800 focus:z-10 sm:text-sm"
             id="name"
             name="name"
             required
-            placeholder="First name"
+            placeholder={profileDetail.firstname}
             onChange={(e) => setName(e.target.value)}
           />
         </div>
-        <div className="my-5">
+        <p className="text-white text-lg">Last Name</p>
+        <div className="my-2">
           <input
             type="text"
             className="rounded-md appearance-none relative block w-full px-3 py-2 border border-gray-400 placeholder-gray-400 text-gray-900 focus:outline-none focus:ring-grey-800 focus:border-grey-800 focus:placeholder-grey-800 focus:z-10 sm:text-sm"
             id="surname"
             name="surname"
             required
-            placeholder="Last name"
+            placeholder={profileDetail.lastname}
             onChange={(e) => setSurname(e.target.value)}
           />
         </div>
-          <div className="my-5">
-            <input
-              type="number"
-              className={`rounded-md appearance-none relative block w-full px-3 py-2 border border-gray-400 placeholder-gray-400 text-gray-900 focus:outline-none focus:ring-grey-800 focus:border-grey-800 focus:placeholder-grey-800 focus:z-10 sm:text-sm`}
-              id="studentid"
-              name="studentid"
-              required
-              placeholder="Student ID"
-              {...register("studentid", {
-                minLength: {
-                  value: 8,
-                  message: "Student ID must be 8 characters",
-                },
-                maxLength: {
-                  value: 8,
-                  message: "Student ID must be 8 characters",
-                },
-              })}
-              onChange={(e) => setStudentid(e.target.value)}
-            />
-            {errors.studentid && (
-                <span className="text-sm text-red-500">
-                  {errors.studentid.message}
-                </span>
-              )}
-          </div>
+        <p className="text-white text-lg">Student ID</p>
+        <div className="my-2">
+          <input
+            type="number"
+            className={`rounded-md appearance-none relative block w-full px-3 py-2 border border-gray-400 placeholder-gray-400 text-gray-900 focus:outline-none focus:ring-grey-800 focus:border-grey-800 focus:placeholder-grey-800 focus:z-10 sm:text-sm`}
+            id="studentid"
+            name="studentid"
+            required
+            placeholder={profileDetail.studentid}
+            {...register("studentid", {
+              minLength: {
+                value: 8,
+                message: "Student ID must be 8 characters",
+              },
+              maxLength: {
+                value: 8,
+                message: "Student ID must be 8 characters",
+              },
+            })}
+            onChange={(e) => setStudentid(e.target.value)}
+          />
+          {errors.studentid && (
+              <span className="text-sm text-red-500">
+                {errors.studentid.message}
+              </span>
+            )}
+        </div>
         <button
           type="submit"
           className="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-zinc-900 hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500 mt-10"

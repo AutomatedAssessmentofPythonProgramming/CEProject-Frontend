@@ -5,7 +5,7 @@ import TeamService from '../services/Team.Service';
 export default function EditTeam() {
     const params=useParams();
     const teamid = params.teamid
-    console.log(teamid)
+    // console.log(teamid)
   const [team, setTeam] = useState('');
   const [detail, setDetail] = useState('');
   const getteam = TeamService.getTeam(teamid)
@@ -24,13 +24,14 @@ export default function EditTeam() {
     // do something with the form data, e.g. submit to a server
     console.log({ team, teamId: detail});
     TeamService.editTeam(team,detail,teamid)
-    //window.location.href= `/team/${encodeURIComponent(teamid)}`
+    window.location.href= `/team/${encodeURIComponent(teamid)}`
   };
 
   const handleDelete = (e) => {
     e.preventDefault()
     console.log("deleting team "+ teamid)
     TeamService.deleteTeam(teamid)
+    window.location.href= `/home`
   }
 
   return (

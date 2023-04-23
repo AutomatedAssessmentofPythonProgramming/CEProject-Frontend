@@ -34,8 +34,8 @@ const teammanagecard=[
 ]
 const exercisecard=[
     {
-        "dueTime": "2023-04-21T17:59:03.328000Z",
-        "openTime": "2023-04-21T17:59:03.328000Z",
+        "dueTime": "2023-04-21T17:59:03.328Z",
+        "openTime": "2023-04-21T17:59:03.328Z",
         "isOpen": true,
         "week": 10,
         "Team": {

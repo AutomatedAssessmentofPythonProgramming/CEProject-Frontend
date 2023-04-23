@@ -2,8 +2,8 @@
 export default function authHeader() {
     const user = JSON.parse(localStorage.getItem('user'));
     const access = localStorage.getItem("access_token")
-    console.log("Auth header process")
-    console.log(user)
+    // console.log("Auth header process")
+    // console.log(user)
         return {
             // 'accept': 'application/json',
             'Authorization': 'Bearer ' + access,

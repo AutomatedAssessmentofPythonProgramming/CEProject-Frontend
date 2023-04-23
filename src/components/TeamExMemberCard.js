@@ -1,6 +1,5 @@
 //For TeamPage.js
 
-
 import { Link } from "react-router-dom";
 import { useState } from 'react';
 import Menu from "./Menu";
@@ -9,27 +8,29 @@ export default function TeamExMemberCard({
     exercise,teamid
 }){
     const[isDone,setIsDone] = useState(exercise.exercise.isDone);
-    const [dueDate,time] = exercise.dueTime.split("T")
-    const dueTime = time.split(".")[0]
+    // const [dueDate,time] = exercise.dueTime.split("T")
+    // const dueTime = time.split(".")[0]
+    const date = new Date(exercise.dueTime);
+    const dateDisplay = date.toString().substring(4, 21)
     return(
         <>
         <div className=" rounded-md border border-gray-500 my-4">
         <div 
-            className="flex justify-between bg-gray-700 my-2 mx-4"
+            className="flex justify-between bg-gray-700 mx-4"
             id='container'
         >
-            <div className="flex flex-col">
-                <Link to={exercise.exerciseid} className="w-full py-4 px-2 text-white text-lg font-bold ">
+            <div className="flex flex-col w-24 py-8">
+                <Link to={exercise.exercise.pk+'/do'} className="py-2 px-2 text-white text-lg font-bold ">
                 <span className="">
                     {exercise.exercise.title} 
                 </span>  
                 </Link>   
-                <span className="py-4 px-2 text-white text-base font-normal">
+                <span className="py-2 px-2 text-white text-base font-normal">
                     {exercise.exercise.instruction}
                 </span>
             </div>     
-            <div className="py-12 px-2 text-white text-lg font-normal">
-                <p>{dueDate + ' ' + dueTime}</p>
+            <div className="py-14 px-2 text-white text-lg font-normal">
+                <p>{dateDisplay}</p>
                 
             </div> 
             {isDone == true ? (

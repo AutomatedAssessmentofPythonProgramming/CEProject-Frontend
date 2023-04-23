@@ -17,8 +17,8 @@ class ExerciseService{
           });
     }
 
-    getExercise(exid){
-        return axios.get(API_URL + exid,{headers: authHeader() })
+    getExercise(exid,teamid){
+        return axios.get(API_URL + exid+'/'+teamid,{headers: authHeader() })
     }
 
     editExercise(title,instruction,source_code,config_code,unittest,exid){

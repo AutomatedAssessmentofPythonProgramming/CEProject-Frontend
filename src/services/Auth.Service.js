@@ -5,7 +5,7 @@ import jwt_decode from 'jwt-decode';
 import GetCookie from "./GetCookie";
 
 const csrfToken = GetCookie()
-console.log(csrfToken)
+// console.log(csrfToken)
 const API_URL = 'https://nutapi.surawit.fish/auth/'
 
 
@@ -44,12 +44,14 @@ class AuthService{
         localStorage.removeItem("refresh_token");
     }
 
-    register(email, username, password) {
-        console.log(email,username,password)
+    register(email, username, password,firstname,lastname) {
+        // console.log(email,username,password)
         return axios.post(API_URL + "register/", {
             email,
             username,
-            password
+            password,
+            firstname,
+            lastname
         })
         .then(response=>{
             console.log(response.data)

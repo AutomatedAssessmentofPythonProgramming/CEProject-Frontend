@@ -48,6 +48,7 @@ export default function NewExercise() {
     ExerciseService.createExercise(title,description,"string","string","string")
     .then((res) => {
       WorkbookService.createWorkbook(teamid,res.id,"0",todayTimeString,duetimeString,true)
+      window.location.href= `/team/${encodeURIComponent(teamid)}/${encodeURIComponent(res.id)}/edit`
     })
     // console.log(duetime)
     // console.log(typeof(duetime))

@@ -6,7 +6,7 @@ import Addmember from "../components/Addmember";
 import { useParams,Link } from "react-router-dom";
 import ExSubmissionCard from "../components/ExSubmissionCard";
 import AllMemberSearch from "../components/AllMemberSearch";
-
+import ExerciseService from "../services/Exercise.Service";
 
 export default function ExSubmissionPage(){
     const card = membersubmitcard
@@ -20,10 +20,21 @@ export default function ExSubmissionPage(){
     const params=useParams();
     const teamid = params.teamid
     const exid = params.exid
-    console.log(params)
+    // console.log(params)
     console.log(memberid)
     const [isLoading, setIsLoading] = useState(false);
     const [isOpen,setIsOpen] = useState(false);
+    const [exDetail,setExDetail] = useState([])
+    useEffect(() => {
+        ExerciseService.getExercise(exid,teamid).then((res) => {
+          setExDetail(res.data);
+            // console.log(exDetail)
+        });
+      }, []);
+
+    const date = new Date(exDetail.due);
+    console.log(date)
+    const dateDisplay = date.toString().substring(4, 21)
 
     return(
         <>
@@ -40,7 +51,7 @@ export default function ExSubmissionPage(){
             </div>
             <div className="flex justify-between max-w-3xl w-full">
                 <h2 className="mt-6 text-3xl font-bold text-white">
-                    {exid}
+                    {exDetail.title}
                 </h2> 
                 <div className="mt-6 flex justify-end">
                     <button 
@@ -60,10 +71,10 @@ export default function ExSubmissionPage(){
                 </div>
             </div>
             <h2 className="mt-6 text-xl font-medium text-white max-w-3xl w-full">
-                    {exdes.exercise.instruction}
+                    {exDetail.instruction}
             </h2>
             <h2 className="mt-6 text-xl font-medium text-white max-w-3xl w-full">
-                    {"Due Date: "+exdes.duedate}
+                    {"Due Date: "+dateDisplay}
             </h2>
             <div className="border-b border-gray-300 max-w-3xl w-full my-8"> </div>
             

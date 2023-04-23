@@ -19,7 +19,7 @@ export default function TeamMemberCard({
             id='container'
             onClick={handleOnClose}
         >
-            <div className="flex flex-col">
+            <div className="flex flex-col w-20">
                 <Link to={"/team/" + teamid +"/member/" + member.studentid} className="w-full py-4 px-2 text-white text-lg font-bold ">
                 <span className="">
                     {member.name} 
@@ -29,28 +29,28 @@ export default function TeamMemberCard({
                     {member.email}
                 </span>
             </div>     
-            <div className="py-12 px-2 text-white text-lg font-normal">
+            <div className="py-12 px-2 text-white text-lg font-normal w-4">
                 {member.studentid}
             </div>    
-            <div className="py-12 px-2 text-white text-lg font-normal">
-                {member.submit}/10
+            <div className="py-12 text-white text-lg font-normal">
+                {member.submit}2
             </div>  
-            <div className="py-12 px-2 text-white text-lg font-normal">
-                {member.score}/100
+            <div className="py-12 w-24 text-white text-lg font-normal">
+                {member.score}20
             </div>  
-            <button   
+            {/* <button   
                 id="dropdownMenuIconHorizontalButton" 
                 data-dropdown-toggle="dropdownDotsHorizontal" 
-                class="items-center rounded-md inline-flex p-2 text-sm font-medium text-white bg-gray-700 focus:ring-gray-600" 
+                className="items-center rounded-md inline-flex p-2 text-sm font-medium text-white bg-gray-700 focus:ring-gray-600" 
                 type="button"
                 onClick={()=> setOpen(!open)}> 
-                <svg class="w-6 h-6" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M6 10a2 2 0 11-4 0 2 2 0 014 0zM12 10a2 2 0 11-4 0 2 2 0 014 0zM16 12a2 2 0 100-4 2 2 0 000 4z"></path></svg>
-            </button>
+                <svg className="w-6 h-6" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M6 10a2 2 0 11-4 0 2 2 0 014 0zM12 10a2 2 0 11-4 0 2 2 0 014 0zM16 12a2 2 0 100-4 2 2 0 000 4z"></path></svg>
+            </button> */}
             
         </div>
-        <div id="dropdown" class={`flex flex-col items-end ${open ?'visible' : 'invisible max-h-0'}`}>
+        {/* <div id="dropdown" className={`flex flex-col items-end ${open ?'visible' : 'invisible max-h-0'}`}>
             <Menu menuname={exercisemenu}/>
-          </div>
+          </div> */}
         </>
     )
 }

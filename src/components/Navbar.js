@@ -137,6 +137,7 @@ export default function Navbar(){
             Setting
           </a>
           <a
+            href="/"
             className="block mt-4 md:inline-block md:mt-0 text-red-500 hover:text-red-700 px-3 py-2 rounded-md text-base font-medium"
             onClick={handleLogout}
           >

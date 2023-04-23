@@ -4,15 +4,21 @@ import { python } from '@codemirror/lang-python';
 import { darcula } from '@uiw/codemirror-themes-all';
 import {material} from '@uiw/codemirror-themes-all'
 import { useParams } from "react-router-dom";
+import ExerciseService from '../services/Exercise.Service'
 
 export default function EditExercisePage() {
   const [code, setCode] = useState('');
   const params=useParams();
   const teamid = params.teamid
   const exid = params.exid
+  const [exDetail,setExDetail] = useState([]);
 
   useEffect(() => {
     // Load the text file using the Fetch API
+    ExerciseService.getExercise(exid).then((res) => {
+      setExDetail(res.data)
+    })
+
     fetch(process.env.PUBLIC_URL + '/testcode.txt')
       .then((response) => response.text())
       .then((text) => {
