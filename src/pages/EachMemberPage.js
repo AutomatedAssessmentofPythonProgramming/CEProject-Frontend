@@ -3,6 +3,7 @@ import { memberexercisecard } from "../constants/tempCards";
 import { useEffect, useState } from "react";
 import EditTeam from "../components/EditTeam";
 import { useParams } from "react-router-dom";
+import ExerciseService from "../services/Exercise.Service";
 
 const card = memberexercisecard
 
@@ -15,6 +16,12 @@ export default function EachMemberPage(){
 
     const handleOnClose = () => setIsOpen(false)
  
+    useEffect(() => {
+        // ExerciseService.getExercise(exid,teamid).then((res) => {
+        //   setExDetail(res.data);
+        //     // console.log(exDetail)
+        // });
+      }, []);
 
     const handleClick=(e)=>{
         
@@ -39,7 +46,7 @@ export default function EachMemberPage(){
                 <h2 className="mt-6 text-3xl font-bold text-white">
                     {stdid}
                 </h2>
-                <div className="mt-6 flex justify-end">
+                {/* <div className="mt-6 flex justify-end">
                     <button 
                         className="h-10 px-3 mx-2 text-sm font-medium rounded-md text-white bg-red-600 hover:bg-red-800 focus:outline-none"
                       
@@ -47,7 +54,7 @@ export default function EachMemberPage(){
                     >
                         Delete
                     </button>
-                </div>
+                </div> */}
                 
             </div>
             <div className="border-b border-gray-300 max-w-3xl w-full my-8"> </div>
@@ -61,7 +68,7 @@ export default function EachMemberPage(){
                     <p className="px-2">Submitted Date</p>
                     <p className="px-2">Scores</p>
                     <p className="pr-16">Submission</p>
-                    <p>      </p>
+                    {/* <p>      </p> */}
                 </div>
                 <div className="flex flex-col w-full px-4">
                         {card.map(Title=>

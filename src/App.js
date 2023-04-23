@@ -21,6 +21,7 @@ import JoinTeam from "./components/JoinTeam";
 import Setting from "./components/Setting";
 import React from "react";
 import Homepage from "./pages/HomePage";
+import DoExercisePage from "./pages/DoExercisePage";
 
 function App() {
   const token = localStorage.getItem("access_token");
@@ -73,6 +74,10 @@ function App() {
           <Route
             path="/team/:teamid/:exid/edit"
             element={<EditExercisePage />}
+          />
+          <Route
+            path="/team/:teamid/:exid/do"
+            element={<DoExercisePage />}
           />
           <Route path="/test" element={<TestPage />} />
           {/* <Route path="/testcoding" element={<TestCodingPage/>}/> */}

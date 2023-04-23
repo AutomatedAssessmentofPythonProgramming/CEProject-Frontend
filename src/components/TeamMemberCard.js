@@ -20,7 +20,7 @@ export default function TeamMemberCard({
             onClick={handleOnClose}
         >
             <div className="flex flex-col w-20">
-                <Link to={"/team/" + teamid +"/member/" + member.studentid} className="w-full py-4 px-2 text-white text-lg font-bold ">
+                <Link to={"/team/" + teamid +"/member/" + member.pk} className="w-full py-4 px-2 text-white text-lg font-bold ">
                 <span className="">
                     {member.name} 
                 </span>  

@@ -18,10 +18,10 @@ export default function TeamExOwnerCard({
     const date = new Date(exercise.dueTime);
     const dateDisplay = date.toString().substring(4, 21)
 
-    const handleEdit = (e)=>{
-        console.log("edit")
-        window.location.href= `/team/${encodeURIComponent(teamid)}/edit`
-    }
+    // const handleEdit = (e)=>{
+    //     console.log("edit")
+    //     window.location.href= `/team/${encodeURIComponent(teamid)}/edit`
+    // }
     return(
         <>
         <div 
@@ -65,13 +65,13 @@ export default function TeamExOwnerCard({
         </div>
         <div id="dropdown" className={`flex flex-col items-end ${open ?'visible' : 'invisible max-h-0'}`}>
         <ul className={`text-sm w-32 border rounded-md border-gray-500`}>
-            <li 
+            {/* <li 
                 className={`p-2 text-sm bg-gray-700 hover:bg-gray-800 text-white`}
                 id="edit"
                 onClick={handleEdit}
             >
                 Edit
-            </li>   
+            </li>    */}
             <li 
                 className={`p-2 text-sm bg-gray-700 hover:bg-gray-800 text-white`}
                 id="delete"

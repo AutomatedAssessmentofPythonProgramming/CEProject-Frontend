@@ -17,20 +17,21 @@ export default function TeamMemberPage(){
     const [teamDetail,setTeamDetail] = useState([])
     const [teamMembers,setTeamMembers] = useState([])
     const [allId,setAllId]=useState([])
+
     useEffect(() => {
         TeamService.getTeam(teamid).then((res) => {
           setTeamDetail(res.data);
             // console.log(teamDetail)
         });
-        TeamService.getTeamMembers(teamid).then((res) => {
-            setTeamMembers(res.data.members);
-        });
-
-        const memberid=[]
-        for(let i=0;i<membercard.length;i++){
-            console.log(membercard[i].studentid)
-            memberid.push(membercard[i].studentid)
-        }
+        TeamService.getTeamMembers(teamid)
+            .then((res) => {
+                setTeamMembers(res.data.members);
+                const memberid = res.data.members.map((member) => member.studentid);
+                setAllId(memberid);
+            })
+            .catch((error) => {
+                console.log(error);
+            });
       }, []);
 
     return(
@@ -70,7 +71,7 @@ export default function TeamMemberPage(){
                 <div className="mb-4 text-2xl font-bold text-white">
                     Total Members : {teamMembers.length}
                 </div>
-                {/* <AllMemberSearch memberid={memberid} teamid={teamid}/> */}
+                <AllMemberSearch memberlist={allId} teamid={teamid}/>
             </div>
             
             <div className="bg-gray-700 rounded-md flex flex-col max-w-3xl w-full">

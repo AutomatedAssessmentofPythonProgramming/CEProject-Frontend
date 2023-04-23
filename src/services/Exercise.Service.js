@@ -2,8 +2,9 @@ import axios from "axios";
 import authHeader from "./AuthHeader";
 
 const API_URL="https://nutapi.surawit.fish/api/exercise/"
-const SUBMISSION_URL="https://nutapi.surawit.fish/api/submission/"
-const SUBMISSIONLIST_URL="https://nutapi.surawit.fish/api/submission-list/" //teamid
+const SUBMIT_URL="https://nutapi.surawit.fish/api/exercise-submit/"
+const SUBMISSIONLIST_URL="https://nutapi.surawit.fish/api/submission/" //teamid
+const USERSUBMISSION_URL="https://nutapi.surawit.fish/api/submissions/user/"
 
 class ExerciseService{
     createExercise(title,instruction,source_code,config_code,unittest){
@@ -29,10 +30,31 @@ class ExerciseService{
         return axios.delete(API_URL + exid,{headers:authHeader()})
     }
 
-    submitExercise(exid,textfile){
-        return axios.post(API_URL+exid+'/submit/',{textfile},{headers:authHeader()})
+    submitExercise(exid,teamid,textfile){
+        return axios.post(SUBMIT_URL+exid+'/'+teamid,textfile,{headers:authHeader()})
+        .then(response => {
+            console.log(response.data)
+            return response.data;
+        })
+        .catch((error) => {
+            console.error(error);
+          });
     }
 
+    getUserSubmission(team_id,user_id){
+        return axios.post(USERSUBMISSION_URL,{team_id,user_id},{headers:authHeader()})
+        .then(response => {
+            console.log(response.data)
+            return response.data;
+        })
+        .catch((error) => {
+            console.error(error);
+          });
+    }
+
+    getSubmissionlist(exerciseid,teamid){
+        return axios.get(SUBMISSIONLIST_URL+exerciseid+'/team/'+teamid,{headers:authHeader()})
+    }
     //remain 2 get submission method
 }
 

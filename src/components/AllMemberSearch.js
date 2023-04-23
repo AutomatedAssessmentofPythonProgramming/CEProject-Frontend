@@ -9,9 +9,17 @@ import { membercard } from "../constants/tempCards";
 //     card.push(membercard[i].studentid)
 // }
 
-export default function AllMemberSearch({memberid,teamid}){
+export default function AllMemberSearch({memberlist,teamid}){
     const [searchTerm, setSearchTerm] = useState("");
-    const filteredData = memberid.filter((item) =>
+    // const [allId,setAllId]=useState([])
+    // const memberid=[]
+    // // for(let i=0;i<memberlist.length;i++){
+    // //     // console.log(membercard[i].studentid)
+    // //     memberid.push(memberlist[i].studentid)
+    // // }
+    // setAllId(memberid);
+    // console.log(allId)
+    const filteredData = memberlist.filter((item) =>
       item.toLowerCase().includes(searchTerm.toLowerCase())
     );
 
@@ -19,7 +27,7 @@ export default function AllMemberSearch({memberid,teamid}){
       window.location.href = `/search/${encodeURIComponent(item)}`;
     };
     
-    console.log(teamid)
+    // console.log(teamid)
 
     return (
       <div>
@@ -28,7 +36,7 @@ export default function AllMemberSearch({memberid,teamid}){
           value={searchTerm}
           onChange={(e) => setSearchTerm(e.target.value)}
           placeholder="Search for member..."
-          className="rounded-md mb-4 px-2"
+          className="rounded-md mb-4 p-2"
         />
         {searchTerm && (
           <ul className="text-white bg-gray-700 border border-gray-300 rounded-md mb-2 pl-2">

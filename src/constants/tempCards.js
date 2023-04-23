@@ -119,23 +119,43 @@ const membercard=[
 ]
 const membersubmitcard=[
     {
-        name:"Adam",
-        email:"123@gmail.com",
-        studentid:"62012345",
-        submitdate:"29/11/2565 23:59",
-    },
-    {
-        name:"Beck",
-        email:"123@gmail.com",
-        studentid:"62012222",
-        submitdate:"29/11/2565 23:59",
-    },
-    {
-        name:"Dennis",
-        email:"122223@gmail.com",
-        studentid:"62018725",
-        submitdate:"29/11/2565 23:59",
-    },
+        "exericse": {
+          "pk": 2,
+          "title": "Exercise02",
+          "instruction": "string",
+          "created": "2023-02-25T08:28:09.812836Z",
+          "updated": "2023-04-22T02:28:28.516765Z",
+          "owner": {
+            "email": "user@example.com"
+          }
+        },
+        "data": [
+          {
+            "user": {
+              "firstname": "",
+              "lastname": "",
+              "username": "string",
+              "email": "user@example.com",
+              "studentid": ""
+            },
+            "dateSubmit": "2023-04-23T13:42:39.118177Z",
+            "score": 5,
+            "code": "def is_prime(n):\n    return n > 1\n"
+          },
+          {
+            "user": {
+              "firstname": "01",
+              "lastname": "test",
+              "username": "test01",
+              "email": "test01@example.com",
+              "studentid": "01"
+            },
+            "dateSubmit": "2023-04-23T18:24:30.536544Z",
+            "score": 0,
+            "code": ""
+          }
+        ]
+      }
 ]
 const memberexercisecard=[
     {

@@ -9,31 +9,44 @@ import AllMemberSearch from "../components/AllMemberSearch";
 import ExerciseService from "../services/Exercise.Service";
 
 export default function ExSubmissionPage(){
-    const card = membersubmitcard
-    const memberid=[]
-    for(let i=0;i<membersubmitcard.length;i++){
+    const card = membersubmitcard[0].data
+    // console.log(card)
+    // const memberid=[]
+    // for(let i=0;i<membersubmitcard.length;i++){
 
-        memberid.push(membersubmitcard[i].studentid)
-    }
+    //     memberid.push(membersubmitcard[i].studentid)
+    // }
     const exdes = exercisecard[0]
 
     const params=useParams();
     const teamid = params.teamid
     const exid = params.exid
     // console.log(params)
-    console.log(memberid)
-    const [isLoading, setIsLoading] = useState(false);
-    const [isOpen,setIsOpen] = useState(false);
+    // console.log(memberid)
+   
     const [exDetail,setExDetail] = useState([])
+    const [cardDetail,setCardDetail] = useState([])
+    const [allId,setAllId]=useState([])
+
     useEffect(() => {
         ExerciseService.getExercise(exid,teamid).then((res) => {
           setExDetail(res.data);
-            // console.log(exDetail)
+            setCardDetail(card)
         });
+        // ExerciseService.getSubmissionlist(exid,teamid)
+            //.then((res)=>{
+        //     setExDetail(res.data.exericse);
+        //     setCardDetail(res.data.data);
+        //     const memberid = res.data.data.map((member) => member.user.studentid);
+        //     setAllId(memberid)
+        // })
+        // .catch((error) => {
+        //     console.log(error);
+        // });
       }, []);
 
     const date = new Date(exDetail.due);
-    console.log(date)
+    // console.log(date)
     const dateDisplay = date.toString().substring(4, 21)
 
     return(
@@ -54,20 +67,14 @@ export default function ExSubmissionPage(){
                     {exDetail.title}
                 </h2> 
                 <div className="mt-6 flex justify-end">
+                    <a href={'/team/' + teamid + '/'+ exid + '/edit'}>
                     <button 
                         className="h-10 px-3 mx-2 text-sm font-medium rounded-md text-white bg-blue-800 hover:bg-blue-900 focus:outline-none"
-                        
                         id = "editcode"
                     >
                         Edit Example Code
                     </button>
-                    <button 
-                        className="h-10 px-3 mx-2 text-sm font-medium rounded-md text-white bg-gray-700 hover:bg-gray-800 focus:outline-none"
-                        
-                        id = "editdes"
-                    >
-                        Edit Description
-                    </button>
+                    </a>
                 </div>
             </div>
             <h2 className="mt-6 text-xl font-medium text-white max-w-3xl w-full">
@@ -82,7 +89,7 @@ export default function ExSubmissionPage(){
                 <div className="mb-4 text-2xl font-bold text-white">
                     Submission
                 </div>
-                <AllMemberSearch memberid={memberid} teamid={teamid}/>
+                {/* <AllMemberSearch memberid={allId} teamid={teamid}/> */}
             </div>
             
             <div className="bg-gray-700 rounded-md flex flex-col max-w-3xl w-full">
@@ -91,10 +98,10 @@ export default function ExSubmissionPage(){
                     <p className="px-2">Student ID</p>
                     <p className="px-2">Submitted Date</p>
                     <p className="pr-16">Submission</p>
-                    <p>      </p>
+                    {/* <p>      </p> */}
                 </div>
                 <div className="flex flex-col w-full px-4">
-                        {card.map(Title=>
+                        {cardDetail.map(Title=>
                             <ExSubmissionCard membersubmit={Title} teamid={teamid}/>
                         )}
                 </div>

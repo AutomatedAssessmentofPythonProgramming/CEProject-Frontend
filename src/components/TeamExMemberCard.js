@@ -19,7 +19,7 @@ export default function TeamExMemberCard({
             className="flex justify-between bg-gray-700 mx-4"
             id='container'
         >
-            <div className="flex flex-col w-24 py-8">
+            <div className="flex flex-col w-32 py-8">
                 <Link to={exercise.exercise.pk+'/do'} className="py-2 px-2 text-white text-lg font-bold ">
                 <span className="">
                     {exercise.exercise.title} 
@@ -34,11 +34,11 @@ export default function TeamExMemberCard({
                 
             </div> 
             {isDone == true ? (
-                <div className="my-12 mr-8 p-2 text-white text-lg font-normal rounded-md bg-green-700">
+                <div className="my-12 mr-8 p-2 h-12 text-white text-lg font-normal rounded-md bg-green-700">
                     Complete
                 </div>
             ) : (
-                <div className="my-12 mr-6 p-2 text-white text-lg font-normal rounded-md bg-red-700">
+                <div className="my-12 mr-6 p-2 h-12 text-white text-lg font-normal rounded-md bg-red-700">
                     InComplete
                 </div>
             )}
