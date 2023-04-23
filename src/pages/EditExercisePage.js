@@ -112,22 +112,22 @@ export default function EditExercisePage() {
           </div>
           <CodeMirror
             value={unittest}
-            height="200px"
+            height="250px"
             theme={darcula}
             extensions={[python()]}
             onChange={setUnittest}
-            className=""
+            className="text-base"
           />
           <div className='text-lg font-semibold mb-2 text-white'>
             Config Code
           </div>
           <CodeMirror
             value={configCode}
-            height="200px"
+            height="250px"
             theme={darcula}
             extensions={[python()]}
             onChange={setConfigCode}
-            className=""
+            className="text-base"
           />
         </div>
         <div className="w-3/4 pr-4 pt-4 border-t-8 border-l-8 border-gray-900 bg-gray-900">
@@ -140,7 +140,7 @@ export default function EditExercisePage() {
             theme={darcula}
             extensions={[python()]}
             onChange={setCode}
-            className=""
+            className="text-base"
           />
         </div>
       </div>

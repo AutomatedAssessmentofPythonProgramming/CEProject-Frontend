@@ -79,7 +79,7 @@ export default function DoExercisePage() {
             theme={darcula}
             extensions={[python()]}
             onChange={setCode}
-            className=""
+            className="text-base"
           />
         </div>
       </div>
