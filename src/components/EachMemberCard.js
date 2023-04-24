@@ -1,9 +1,10 @@
 //For EachMemberPage.js
 
 import { Link } from "react-router-dom";
-import { useState } from 'react';
+import { useState,useEffect } from 'react';
 import Menu from "./Menu";
 import ViewCode from "../components/ViewCode";
+import ExerciseService from "../services/Exercise.Service";
 
 export default function EachMemberCard({
     memberexcard,teamid,stdid
@@ -17,8 +18,16 @@ export default function EachMemberCard({
         setIsModalOpen(false);
         // console.log("close")
       };
-      const date = new Date(memberexcard.dateSubmit);
-      const dateDisplay = date.toString().substring(4, 21)
+
+    const date = new Date(memberexcard.dateSubmit);
+    const dateDisplay = date.toString().substring(4, 21)
+    const [exDetail,setExDetail] = useState([])
+    useEffect(() => {
+        ExerciseService.getExercise(memberexcard.exercise,teamid).then((res) => {
+          setExDetail(res.data);
+            // console.log(exDetail)
+        });
+      }, []);
     return(
         <>
         <div 
@@ -28,10 +37,12 @@ export default function EachMemberCard({
             <div className="flex flex-col w-32">
                 
                 <span className="w-full py-4 px-2 text-white text-lg font-bold">
-                    {memberexcard.exercise_title} 
+                    {/* {memberexcard.exercise_title}  */}
+                    {exDetail.title}
                 </span>  
                 <span className="py-4 px-2 text-white text-base font-normal">
-                    {memberexcard.exercise_instruction}
+                    {/* {memberexcard.exercise_instruction} */}
+                    {exDetail.instruction}
                 </span>
             </div>     
             <div className="flex flex-col pb-8">
