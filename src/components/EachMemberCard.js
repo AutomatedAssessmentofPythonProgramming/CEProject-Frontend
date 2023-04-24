@@ -34,9 +34,20 @@ export default function EachMemberCard({
                     {memberexcard.exercise_instruction}
                 </span>
             </div>     
-            <div className="py-12 px-2 text-white text-lg font-normal">
+            <div className="flex flex-col pb-8">
+            <div className="pt-12 px-2 text-white text-lg font-normal">
                 {dateDisplay}
-            </div>    
+            </div>   
+            {memberexcard.isLate === false?
+                    <div className="px-2 text-green-600 text-lg font-normal">
+                        Not late
+                    </div> 
+                    :
+                    <div className="px-2 text-red-600 text-lg font-normal">
+                        Late
+                    </div>
+                }
+            </div> 
             <div className="py-12 pr-6 text-white text-lg font-normal">
                {memberexcard.score}
             </div>   
