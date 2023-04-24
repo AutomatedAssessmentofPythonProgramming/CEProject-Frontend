@@ -26,8 +26,8 @@ export default function EachMemberPage(){
         // });
         ExerciseService.getUserSubmission(teamid,stdid)
         .then((res)=>{
-            setMemberDetail(res.submissions[0])
-            // setMemberDetail(res.user)
+            // setMemberDetail(res.submissions[0])
+            setMemberDetail(res.user)
             setCardDetail(res.submissions)
         })
       }, []);
@@ -53,8 +53,8 @@ export default function EachMemberPage(){
             </div>
             <div className="max-w-3xl w-full">
                 <p className="mt-6 text-3xl font-bold text-white">
-                    {memberDetail.user_firstname +' '+memberDetail.user_lastname}
-                    {/* {memberDetail.firstname +' '+memberDetail.lastname} */}
+                    {/* {memberDetail.user_firstname +' '+memberDetail.user_lastname} */}
+                    {memberDetail.firstname +' '+memberDetail.lastname}
                 </p>
                 <p className="mt-6 text-xl font-normal text-white">
                     {memberDetail.studentid}
