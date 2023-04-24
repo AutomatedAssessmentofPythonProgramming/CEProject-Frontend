@@ -30,6 +30,10 @@ export default function Setting(){
   useEffect(() => {
       AuthService.getUserProfile().then((res) => {
         setprofileDetail(res.data);
+        setEmailReg(res.data.email)
+        setName(res.data.firstname)
+        setSurname(res.data.lastname)
+        setStudentid(res.data.studentid)
         // console.log(allTeams)
       });
     }, []);
@@ -53,6 +57,7 @@ export default function Setting(){
         <div className="my-2">
           <input
             onChange={(e) => setEmailReg(e.target.value)}
+            value={emailReg}
             type="email"
             className="rounded-md appearance-none relative block w-full px-3 py-2 border border-gray-400 placeholder-gray-400 text-gray-900 focus:outline-none focus:ring-grey-800 focus:border-grey-800 focus:placeholder-grey-800 focus:z-10 sm:text-sm"
             id="email"
@@ -70,6 +75,7 @@ export default function Setting(){
             name="name"
             required
             placeholder={profileDetail.firstname}
+            value={name}
             onChange={(e) => setName(e.target.value)}
           />
         </div>
@@ -82,6 +88,7 @@ export default function Setting(){
             name="surname"
             required
             placeholder={profileDetail.lastname}
+            value={surname}
             onChange={(e) => setSurname(e.target.value)}
           />
         </div>
@@ -94,6 +101,7 @@ export default function Setting(){
             name="studentid"
             required
             placeholder={profileDetail.studentid}
+            value={studentid}
             {...register("studentid", {
               minLength: {
                 value: 8,

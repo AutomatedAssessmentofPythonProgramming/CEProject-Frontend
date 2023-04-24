@@ -31,18 +31,20 @@ export default function ExSubmissionPage(){
     useEffect(() => {
         ExerciseService.getExercise(exid,teamid).then((res) => {
           setExDetail(res.data);
-            setCardDetail(card)
+            // setCardDetail(card)
         });
-        // ExerciseService.getSubmissionlist(exid,teamid)
-            //.then((res)=>{
-        //     setExDetail(res.data.exericse);
-        //     setCardDetail(res.data.data);
-        //     const memberid = res.data.data.map((member) => member.user.studentid);
-        //     setAllId(memberid)
-        // })
-        // .catch((error) => {
-        //     console.log(error);
-        // });
+        ExerciseService.getSubmissionlist(exid,teamid)
+            .then((res)=>{
+            // setExDetail(res.data.exericse);
+            setCardDetail(res.data.data);
+            const memberid = res.data.data.map((member) => member.user.pk+'/'+member.user.studentid);
+            // console.log(res.data.data)
+            setAllId(memberid)
+            console.log(memberid)
+        })
+        .catch((error) => {
+            console.log(error);
+        });
       }, []);
 
     const date = new Date(exDetail.due);
@@ -89,13 +91,19 @@ export default function ExSubmissionPage(){
                 <div className="mb-4 text-2xl font-bold text-white">
                     Submission
                 </div>
-                {/* <AllMemberSearch memberid={allId} teamid={teamid}/> */}
+                {/* <AllMemberSearch memberlist={allId} teamid={teamid}/> */}
+                {allId.length !== 0 ?
+                    <AllMemberSearch memberlist={allId} teamid={teamid} />
+                    :
+                    <></>
+                }
+
             </div>
             
             <div className="bg-gray-700 rounded-md flex flex-col max-w-3xl w-full">
                 <div className="bg-gray-700 rounded-md flex justify-between max-w-3xl w-full text-white py-4 text-lg font-normal">
                     <p className="pl-6 pr-16">Students</p>
-                    <p className="px-2">Student ID</p>
+                    <p className="px-2">Scores</p>
                     <p className="px-2">Submitted Date</p>
                     <p className="pr-16">Submission</p>
                     {/* <p>      </p> */}

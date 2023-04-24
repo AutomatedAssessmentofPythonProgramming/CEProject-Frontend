@@ -31,11 +31,12 @@ export default function Login(){
         // navigate(path);
         AuthService.login(email,password)
         .then(()=>{
-            showLoader()
-            navigate('/home')
-            window.location.reload();
+            // showLoader()
+            // navigate('/home')
+            // window.location.reload();
         },
         error => {
+
             const resMessage = 
                 (error.response &&
                     error.response.data && 

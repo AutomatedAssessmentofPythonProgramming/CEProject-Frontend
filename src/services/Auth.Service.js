@@ -30,11 +30,12 @@ class AuthService{
                 localStorage.setItem("user", JSON.stringify(response.data));
                 console.log(localStorage.getItem("user"))
             }
-
+            window.location.href= `/`
             return response.data;
         })
         .catch((error) => {
             console.error(error);
+            alert('Wrong Email or Password')
           });
     }
 
@@ -55,9 +56,11 @@ class AuthService{
         })
         .then(response=>{
             console.log(response.data)
+            window.location.href= `/`
             return response.data
         })
         .catch((error) => {
+            alert('Email already used')
             console.error(error);
           });;
     }

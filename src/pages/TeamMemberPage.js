@@ -26,8 +26,9 @@ export default function TeamMemberPage(){
         TeamService.getTeamMembers(teamid)
             .then((res) => {
                 setTeamMembers(res.data.members);
-                const memberid = res.data.members.map((member) => member.studentid);
+                const memberid = res.data.members.map((member) => member.pk+'/'+member.studentid);
                 setAllId(memberid);
+                console.log(memberid)
             })
             .catch((error) => {
                 console.log(error);

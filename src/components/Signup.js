@@ -50,8 +50,8 @@ export default function Signup(){
       AuthService.register(emailReg,username,passwordReg,name,surname)
       .then(()=>{
         // AuthService.editUserProfile(username,emailReg,name,surname,studentid)
-        navigate('/')
-        window.location.reload();
+        // navigate('/')
+        // window.location.reload();
       }, error => {
         const resMessage = 
             (error.response &&

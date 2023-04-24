@@ -45,7 +45,7 @@ export default function NewExercise() {
     // const inputdate = '2023-04-23 10:30:00'
     const duetime = new Date(inputdate)
     const duetimeString = duetime.toISOString();
-    ExerciseService.createExercise(title,description,"string","string","string")
+    ExerciseService.createExercise(title,description,"string","string","string","string")
     .then((res) => {
       WorkbookService.createWorkbook(teamid,res.id,"0",todayTimeString,duetimeString,true)
       window.location.href= `/team/${encodeURIComponent(teamid)}/${encodeURIComponent(res.id)}/edit`
@@ -108,13 +108,13 @@ export default function NewExercise() {
           required
         />
         <input
-              type="time"
-              id="time-picker"
-              value={selectedTime}
-              onChange={handleTimeChange}
-              className="rounded-md p-2 ml-2"
-              required
-            />
+          type="time"
+          id="time-picker"
+          value={selectedTime}
+          onChange={handleTimeChange}
+          className="rounded-md p-2 ml-2"
+          required
+        />
         <div className="flex flex-row justify-end my-4">
                 <button type="submit" className="px-5 py-2 ml-2 bg-blue-700 hover:bg-blue-800 text-white rounded-md">
                     Create

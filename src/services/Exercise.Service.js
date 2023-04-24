@@ -7,8 +7,8 @@ const SUBMISSIONLIST_URL="https://nutapi.surawit.fish/api/submission/" //teamid
 const USERSUBMISSION_URL="https://nutapi.surawit.fish/api/submissions/user/"
 
 class ExerciseService{
-    createExercise(title,instruction,source_code,config_code,unittest){
-        return axios.post(API_URL,{title,instruction,source_code,config_code,unittest}, { headers: authHeader() })
+    createExercise(title,instruction,source_code,config_code,unittest,example_code,code_name){
+        return axios.post(API_URL,{title,instruction,source_code,config_code,unittest,example_code,code_name}, { headers: authHeader() })
         .then(response => {
             console.log(response.data)
             return response.data;
@@ -22,8 +22,8 @@ class ExerciseService{
         return axios.get(API_URL + exid+'/'+teamid,{headers: authHeader() })
     }
 
-    editExercise(title,instruction,source_code,config_code,unittest,exid){
-        return axios.patch(API_URL+exid,{title,instruction,source_code,config_code,unittest},{headers:authHeader()})
+    editExercise(title,instruction,source_code,config_code,unittest,exid,example_code,code_name){
+        return axios.patch(API_URL+exid,{title,instruction,source_code,config_code,unittest,example_code,code_name},{headers:authHeader()})
     }
 
     deleteExercise(exid){
@@ -33,8 +33,15 @@ class ExerciseService{
     submitExercise(exid,teamid,textfile){
         return axios.post(SUBMIT_URL+exid+'/'+teamid,textfile,{headers:authHeader()})
         .then(response => {
-            console.log(response.data)
-            return response.data;
+            if(response.data.error == "submission"){
+                alert('Your code isn\'t correct.')
+            }
+            else{console.log(response.data)
+                alert('Success!')
+                window.location.href= `/team/${encodeURIComponent(teamid)}`
+                return response.data;
+            }
+            
         })
         .catch((error) => {
             console.error(error);

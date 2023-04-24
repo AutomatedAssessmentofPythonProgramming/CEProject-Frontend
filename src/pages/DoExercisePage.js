@@ -20,7 +20,7 @@ export default function DoExercisePage() {
     // Load the text file using the Fetch API
     ExerciseService.getExercise(exid,teamid).then((res) => {
       setExDetail(res.data)
-      setCode("print(\"hello world!\")")
+      setCode(res.data.example_code)
       setTitle(res.data.title)
       setIns(res.data.instruction)
     })
@@ -40,12 +40,21 @@ export default function DoExercisePage() {
   };
 
   const handleClick = () => {
+    console.log(exDetail.code_name)
+    const filename = exDetail.code_name +'.txt'
+    // const filename = 'primes.txt'
     const blob = new Blob([code], { type: 'text/plain' });
     const formData = new FormData();
-    formData.append('file', blob);
-    console.log(title,ins,formData);
+    formData.append('file', blob,filename);
+    console.log(filename,title,ins,formData);
     ExerciseService.submitExercise(exid,teamid,formData)
-    window.location.href= `/team/${encodeURIComponent(teamid)}`
+    .then((res)=>{
+      console.log(res.error)
+      // window.location.href= `/team/${encodeURIComponent(teamid)}`
+    }).catch((error) => {
+      console.error(error);
+    })
+    // window.location.href= `/team/${encodeURIComponent(teamid)}`
   }
 
   return (

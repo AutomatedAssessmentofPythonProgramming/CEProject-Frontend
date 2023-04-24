@@ -29,19 +29,22 @@ export default function ExSubmissionCard({
         >
             <div className="flex flex-col w-32">
                 <Link 
-                    to={"/team/" + teamid+"/member/" + membersubmit.user.studentid} 
+                    to={"/team/" + teamid+"/member/" + membersubmit.user.pk} 
                     className="w-full py-4 px-2 text-white text-lg font-semibold "
                 >
                 <span className="">
                     {membersubmit.user.firstname} 
                 </span>  
                 </Link>   
-                <span className="py-4 px-2 text-white text-base font-normal">
+                {/* <span className="py-4 px-2 text-white text-base font-normal">
                     {membersubmit.user.email}
-                </span>
+                </span> */}
+                <div className="py-4 px-2 text-white text-base font-normal">
+                    {membersubmit.user.studentid}
+                </div>   
             </div>     
             <div className="py-12 px-2 text-white text-lg font-normal">
-                {membersubmit.user.studentid}62010713
+                {membersubmit.score}
             </div>    
             <div className="py-12 px-2 text-white text-lg font-normal">
                 {dateDisplay}
