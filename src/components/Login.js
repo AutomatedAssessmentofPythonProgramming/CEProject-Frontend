@@ -2,8 +2,9 @@ import { useState } from 'react';
 import { loginFields } from "../constants/formFields";
 import FormAction from "./FormAction";
 import FormExtra from "./FormExtra";
-import Input from "./Input";
-import { useNavigate } from "react-router-dom";
+import { useNavigate} from "react-router-dom";
+import AuthService from '../services/Auth.Service';
+import useFullPageLoader from '../hooks/useFullPageLoader';
 
 const fields=loginFields;
 let fieldsState = {};
@@ -13,6 +14,10 @@ export default function Login(){
     const [loginState,setLoginState]=useState(fieldsState);
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
+    const [message, setMessage] = useState("");
+    const [loading, setLoading] = useState(false);
+
+    const [loader, showLoader, hideLoader] = useFullPageLoader();
 
     let navigate = useNavigate(); 
 
@@ -22,10 +27,30 @@ export default function Login(){
 
     const handleSubmit=(e)=>{
         e.preventDefault();
-        console.log(email, password)
-        let path = `/home`; 
-        navigate(path);
-    }
+        // let path = `/home`; 
+        // navigate(path);
+        AuthService.login(email,password)
+        .then(()=>{
+            // showLoader()
+            // navigate('/home')
+            // window.location.reload();
+        },
+        error => {
+
+            const resMessage = 
+                (error.response &&
+                    error.response.data && 
+                    error.response.data.message) ||
+                error.message ||
+                error.toString();
+            
+            setLoading(false);
+            setMessage(resMessage);
+        }
+        ).then(() => {
+            hideLoader();
+          });
+    };
 
     //Handle Login API Integration here
     const authenticateUser = () =>{
@@ -35,36 +60,6 @@ export default function Login(){
     return(
         <form className="mt-8 space-y-6" onSubmit={handleSubmit}>
         <div className="">
-            {/* {
-                fields.map(field=>
-                        <Input
-                            key={field.id}
-                            handleChange={handleChange}
-                            value={loginState[field.id]}
-                            labelText={field.labelText}
-                            labelFor={field.labelFor}
-                            id={field.id}
-                            name={field.name}
-                            type={field.type}
-                            isRequired={field.isRequired}
-                            placeholder={field.placeholder}
-                    />
-                
-                )
-            } */}
-            {/* <div className="my-5">
-                <button
-                    id = "google"
-                    className="text-white bg-gray-900 hover:bg-gray-700 w-full border border-gray-400 font-medium rounded-md text-sm px-3 py-2 text-center items-center" 
-                >
-                Sign in with Google
-                </button>
-            </div>
-            <div className = "my-5 text-gray-400 items-center flex flex-row justify-center">
-                <hr className="h-0.5 w-full bg-gray-300 rounded-md"></hr>
-                <p className="mx-4">or</p>
-                <hr className="h-0.5 w-full bg-gray-300 rounded-md"></hr> 
-            </div> */}
             <div className="my-5">
                 <input
                     onChange={(e) => setEmail(e.target.value)}

@@ -2,26 +2,23 @@ import React, { useState } from 'react';
 import { useParams,useHistory } from "react-router-dom";
 import TeamService from '../services/Team.Service';
 
-export default function NewTeam() {
+export default function JoinTeam() {
     // const params=useParams();
     // const teamid = params.teamid
-  const [team, setTeam] = useState('');
-  const [detail, setDetail] = useState('');
+  const [code, setCode] = useState('');
   //const history = useHistory();
 
-  const handleTeamChange = (event) => {
-    setTeam(event.target.value);
+  const handleCodeChange = (event) => {
+    setCode(event.target.value);
   };
 
-  const handleTeamIdChange = (event) => {
-    setDetail(event.target.value);
-  };
+
 
   const handleSubmit = (event) => {
     event.preventDefault();
     // do something with the form data, e.g. submit to a server
-    console.log({ team, teamId: detail});
-    TeamService.createTeam(team,detail)
+    console.log(code);
+    TeamService.addTeamMember(code)
     window.location.href= `/home`
   };
 
@@ -39,34 +36,22 @@ export default function NewTeam() {
             </div>
       <div className='border border-gray-300 max-w-md w-full rounded-md px-4'>
       <h1 className="font-semibold text-2xl text-white my-4">
-        Create Team
+        join Team
       </h1>
       <form onSubmit={handleSubmit}>
         <div className='text-white text-lg my-2'>
-          Display Name
+          Invite Code
         </div>
         <input
             type="text"
             id="title-input"
-            value={team}
-            onChange={handleTeamChange}
+            value={code}
+            onChange={handleCodeChange}
             className='rounded-md p-2 w-full'
-            required
-          />
-        <div className='text-white text-lg my-2'>
-          Detail
-        </div>
-        <input
-            type="text"
-            id="description-input"
-            value={detail}
-            onChange={handleTeamIdChange}
-            className='rounded-md p-2 w-full'
-            required
           />
         <div className="flex flex-row justify-end my-4">
                 <button type="submit" className="px-5 py-2 ml-2 bg-green-700 hover:bg-green-800 text-white rounded-md">
-                    Create
+                    Join
                 </button>
             </div>
       </form>
