@@ -17,11 +17,11 @@ export default function NewTeam() {
     setDetail(event.target.value);
   };
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
     // do something with the form data, e.g. submit to a server
     console.log({ team, teamId: detail});
-    TeamService.createTeam(team,detail)
+    await TeamService.createTeam(team,detail)
     window.location.href= `/home`
   };
 
