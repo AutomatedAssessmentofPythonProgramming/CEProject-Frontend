@@ -38,11 +38,11 @@ export default function Setting(){
       });
     }, []);
 
-  const handleSubmit=(event)=>{
+  const handleSubmit= async(event)=>{
     event.preventDefault();
     console.log(emailReg.split("@")[0],emailReg,name,surname,studentid)
     if(studentid.length==8){
-        AuthService.editUserProfile(emailReg.split("@")[0],emailReg,name,surname,studentid)
+        await AuthService.editUserProfile(emailReg.split("@")[0],emailReg,name,surname,studentid)
         window.location.href= `/account`
       };
     }

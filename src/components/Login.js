@@ -30,26 +30,26 @@ export default function Login(){
         // let path = `/home`; 
         // navigate(path);
         AuthService.login(email,password)
-        .then(()=>{
-            // showLoader()
-            // navigate('/home')
-            // window.location.reload();
-        },
-        error => {
+        // .then(()=>{
+        //     // showLoader()
+        //     // navigate('/home')
+        //     // window.location.reload();
+        // },
+        // error => {
 
-            const resMessage = 
-                (error.response &&
-                    error.response.data && 
-                    error.response.data.message) ||
-                error.message ||
-                error.toString();
+        //     const resMessage = 
+        //         (error.response &&
+        //             error.response.data && 
+        //             error.response.data.message) ||
+        //         error.message ||
+        //         error.toString();
             
-            setLoading(false);
-            setMessage(resMessage);
-        }
-        ).then(() => {
-            hideLoader();
-          });
+        //     setLoading(false);
+        //     setMessage(resMessage);
+        // }
+        // ).then(() => {
+        //     hideLoader();
+        //   });
     };
 
     //Handle Login API Integration here

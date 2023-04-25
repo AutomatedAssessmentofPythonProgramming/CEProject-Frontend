@@ -19,18 +19,18 @@ export default function EditTeam() {
     setDetail(event.target.value);
   };
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
     // do something with the form data, e.g. submit to a server
     console.log({ team, teamId: detail});
-    TeamService.editTeam(team,detail,teamid)
+    await TeamService.editTeam(team,detail,teamid)
     window.location.href= `/team/${encodeURIComponent(teamid)}`
   };
 
-  const handleDelete = (e) => {
+  const handleDelete = async (e) => {
     e.preventDefault()
     console.log("deleting team "+ teamid)
-    TeamService.deleteTeam(teamid)
+    await TeamService.deleteTeam(teamid)
     window.location.href= `/home`
   }
 

@@ -72,7 +72,7 @@ export default function EditExercisePage() {
   // const onChange = React.useCallback((value, viewUpdate) => {
   //   console.log('value:', value);
   // }, []);
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
     // do something with the form data, e.g. submit to a server
     const inputdate = selectedDate+' '+selectedTime
@@ -80,7 +80,7 @@ export default function EditExercisePage() {
     const duetime = new Date(inputdate)
     const duetimeString = duetime.toISOString();
     console.log(teamid,exid,teamid,exid,'0',exDetail.created,duetimeString,true);
-    WorkbookService.editWorkbook(teamid,exid,teamid,exid,'0',exDetail.created,duetimeString,true)
+    await WorkbookService.editWorkbook(teamid,exid,teamid,exid,'0',exDetail.created,duetimeString,true)
     .then((res)=>{
       console.log(res.data)
       alert('Exercise Detail Edited!')
@@ -90,7 +90,8 @@ export default function EditExercisePage() {
     //window.location.href= `/team/${encodeURIComponent(teamid)}/${encodeURIComponent(title)}/edit`
   };
 
-  const handleClick = () => {
+  const handleClick = async (e) => {
+    e.preventDefault();
     // fetch('/save-code', {
     //     method: 'POST',
     //     body: JSON.stringify({ code }),
@@ -114,7 +115,7 @@ export default function EditExercisePage() {
     const duetime = new Date(inputdate)
     const duetimeString = duetime.toISOString();
     // console.log(title,ins,unittest,configCode,sourcecode);
-    ExerciseService.editExercise(title,ins,sourcecode,configCode,unittest,exid,guidecode,filename)
+    await ExerciseService.editExercise(title,ins,sourcecode,configCode,unittest,exid,guidecode,filename)
     window.location.href= `/team/${encodeURIComponent(teamid)}`
   }
 
@@ -155,7 +156,7 @@ export default function EditExercisePage() {
               required
               placeholder={exDetail.instruction}
             />
-            <p className="text-lg font-semibold mb-2 text-white">File name</p>
+            <p className="text-lg font-semibold mb-2 text-white">File name (same as unit test name)</p>
             <input
               type="text"
               id="instruction"

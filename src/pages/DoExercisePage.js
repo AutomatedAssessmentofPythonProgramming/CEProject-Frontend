@@ -39,7 +39,8 @@ export default function DoExercisePage() {
     setIns(event.target.value);
   };
 
-  const handleClick = () => {
+  const handleClick =async (e) => {
+    e.preventDefault()
     console.log(exDetail.code_name)
     const filename = exDetail.code_name +'.txt'
     // const filename = 'primes.txt'
@@ -47,7 +48,7 @@ export default function DoExercisePage() {
     const formData = new FormData();
     formData.append('file', blob,filename);
     console.log(filename,title,ins,formData);
-    ExerciseService.submitExercise(exid,teamid,formData)
+    await ExerciseService.submitExercise(exid,teamid,formData)
     .then((res)=>{
       console.log(res.error)
       // window.location.href= `/team/${encodeURIComponent(teamid)}`

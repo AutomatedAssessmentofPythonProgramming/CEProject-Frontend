@@ -37,24 +37,20 @@ export default function NewExercise() {
     setSelectedTime(event.target.value);
   };
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
-    // do something with the form data, e.g. submit to a server
-    console.log({ title, description, selectedDate ,selectedTime});
-    const inputdate = selectedDate+' '+selectedTime
-    // const inputdate = '2023-04-23 10:30:00'
-    const duetime = new Date(inputdate)
+    console.log({ title, description, selectedDate ,selectedTime });
+    const inputdate = selectedDate + ' ' + selectedTime;
+    const duetime = new Date(inputdate);
     const duetimeString = duetime.toISOString();
-    ExerciseService.createExercise(title,description,"string","string","string","string")
-    .then((res) => {
-      WorkbookService.createWorkbook(teamid,res.id,"0",todayTimeString,duetimeString,true)
-      window.location.href= `/team/${encodeURIComponent(teamid)}/${encodeURIComponent(res.id)}/edit`
-    })
-    // console.log(duetime)
-    // console.log(typeof(duetime))
-    // console.log(currentDate)
-    // console.log(typeof(currentDate))
-    //window.location.href= `/team/${encodeURIComponent(teamid)}/${encodeURIComponent(title)}/edit`
+  
+    try {
+      const res = await ExerciseService.createExercise(title, description, "string", "string", "string", "string");
+      await WorkbookService.createWorkbook(teamid, res.id, "0", todayTimeString, duetimeString, true);
+      window.location.href = `/team/${encodeURIComponent(teamid)}/${encodeURIComponent(res.id)}/edit`;
+    } catch (error) {
+      console.error(error);
+    }
   };
 
   return (
