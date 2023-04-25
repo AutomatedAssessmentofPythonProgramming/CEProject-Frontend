@@ -14,11 +14,11 @@ export default function JoinTeam() {
 
 
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
     // do something with the form data, e.g. submit to a server
     console.log(code);
-    TeamService.addTeamMember(code)
+    await TeamService.addTeamMember(code)
     window.location.href= `/home`
   };
 
