@@ -37,7 +37,7 @@ class ExerciseService{
                 alert('Your code isn\'t correct.')
             }
             else{console.log(response.data)
-                alert('Success!')
+                alert('Success! Score '+ response.data.data.points +'/'+response.data.data.maxPoints)
                 window.location.href= `/team/${encodeURIComponent(teamid)}`
                 return response.data;
             }
