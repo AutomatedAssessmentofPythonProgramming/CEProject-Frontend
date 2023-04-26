@@ -45,7 +45,8 @@ export default function NewExercise() {
     const duetimeString = duetime.toISOString();
   
     try {
-      const res = await ExerciseService.createExercise(title, description, "string", "string", "string", "string");
+      const res = await ExerciseService.createExercise(title, description, "string","test_groups:\n    - module: grader_tests\n      display_name: Grader tests" , 
+                                                       "import unittest\r\n\r\nfrom graderutils.graderunittest import points\r\n\r\n# change from primes to your func\r\nfrom model import is_prime as model_is_prime\r\nfrom primes import is_prime\r\n\r\nclass Test(unittest.TestCase):\r\n    \r\n # set score\r\n@points(10)\r\ndef test(self):\r\n implement assert function here\r\npass\r\n\r\nif __name__ == \"__main__\":\r\nunittest.main(verbosity=2)\r\n", "string");
       await WorkbookService.createWorkbook(teamid, res.id, "0", todayTimeString, duetimeString, true);
       window.location.href = `/team/${encodeURIComponent(teamid)}/${encodeURIComponent(res.id)}/edit`;
     } catch (error) {
